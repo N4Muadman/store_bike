@@ -13,17 +13,14 @@ class CategoryProductController extends Controller
      */
     public function index()
     {
-        $categoryQuery = Category::with('products', 'categoryParent', 'categoryChilden')->where('level', 1);
+        $categoryQuery = Category::with('products');
         if(request('name')){
             $categoryQuery->where('name', 'like', '%' .request('name') . '%');
         }
-        if(request('level')){
-            $categoryQuery->where('level', request('name'));
-        }
+        
         $categories = $categoryQuery->orderBy('created_at', 'DESC')->paginate(15);
-        $categoriesSelect = $categoryQuery->where('level', 1)->orderBy('name', 'ASC')->get();
 
-        return view('admin.category-product.index', compact('categories', 'categoriesSelect'));
+        return view('admin.category-product.index', compact('categories'));
     }
 
     /**
@@ -39,16 +36,10 @@ class CategoryProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required', 'level' => 'required']);
-
-        if ($request->level == 2 && !$request->category_parent){
-            return redirect()->back()->with('error', 'Chưa chọn danh mục cha cho danh mục level 2');
-        }
+        $request->validate(['name' => 'required', 'icon' => 'required']);
 
         Category::create([
             'name' => $request->name,
-            'parent_id' => $request->category_parent ?? 0,
-            'level' => $request->level,
             'icon' => $request->icon
         ]);
 
@@ -85,11 +76,7 @@ class CategoryProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate(['name' => 'required', 'level' => 'required']);
-
-        if ($request->level == 2 && !$request->category_parent){
-            return redirect()->back()->with('error', 'Chưa chọn danh mục cha cho danh mục level 2');
-        }
+        $request->validate(['name' => 'required', 'icon' => 'required']);
 
         $category = Category::find($id);
 
@@ -99,8 +86,6 @@ class CategoryProductController extends Controller
 
         $category->update([
             'name' => $request->name,
-            'parent_id' => $request->category_parent ?? 0,
-            'level' => $request->level,
             'icon' => $request->icon
         ]);
 

@@ -207,7 +207,7 @@
                                         </div>
                                         <div class="con-wrap mt-4">
                                             <a href="{{ route('product.detail', $product->id) }}"
-                                                class="mb-4 text text-truncate">{{ $product->name }}</a>
+                                                class="mb-4 d-block text text-truncate">{{ $product->name }}</a>
                                             <div class="rating-cover ">
                                                 @php
                                                     $rating =

@@ -43,7 +43,7 @@ class ProductController extends Controller
             $productQuery->OrderByDesc('created_at');
         }
 
-        $products = $productQuery->paginate(9);
+        $products = $productQuery->paginate(12);
 
         $categories = $categoryQuery->orderBy('name')->get();
         return view('pages.products.index', compact('products', 'categories'));

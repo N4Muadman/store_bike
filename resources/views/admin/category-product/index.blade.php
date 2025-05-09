@@ -44,8 +44,7 @@
                                     <th>ID</th>
                                     <th>Tên danh mục</th>
                                     <th>Icon</th>
-                                    <th>Số lượng danh mục con</th>
-                                    <th>Số lượng sản phẩm thuộc danh mục</th>
+                                    <th>Số lượng sản phẩm</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </thead>
@@ -58,8 +57,7 @@
                                             {!! $it->icon ? '<img src="'.$it->icon.'" style="width: 25px; height: 25px"
                                             class="blur-up lazyload" alt=""></td>' : 'Không có' !!} 
                                         </td>
-                                        <td>{{ $it->categoryChilden ? $it->categoryChilden->count() : 'Không có' }}</td>
-                                        <td></td>
+                                        <td>{{ $it->products->count() }}</td>
                                         <td>
                                             <a href="#"class="avtar avtar-edit avtar-xs btn-link-secondary"
                                                 data-id="{{ $it->id }}" title="CẬP NHẬT">
@@ -72,26 +70,6 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    @foreach ($it->categoryChilden as $sub_category)
-                                        <tr class="sub-row">
-                                            <td>{{ $sub_category->id }}</td>
-                                            <td>{{ $sub_category->name }}</td>
-                                            <td></td>
-                                            <td>Danh mục con</td>
-                                            <td>{{ $sub_category->products->count() }}</td>
-                                            <td>
-                                                <a href="#"class="avtar avtar-edit avtar-xs btn-link-secondary"
-                                                    data-id="{{ $sub_category->id }}" title="CẬP NHẬT">
-                                                    <i class="ti ti-edit f-20"></i>
-                                                </a>
-                                                <a href="#" class="avtar avtar-delete avtar-xs btn-link-secondary"
-                                                    data-name="{{ $sub_category->name }}" data-id="{{ $sub_category->id }}"
-                                                    title="XÓA Danh mục">
-                                                    <i class="ti ti-trash f-20"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
                                 @empty
                                     <tr>
                                         <td colspan="6">
@@ -124,29 +102,11 @@
                             <input type="text" class="form-control" name="name" placeholder="Nhập tên danh mục" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="" class="form-lable">Chọn level</label>
-                            <select class="form-select select-level"  name="level" required>
-                                <option value="">Chọn level</option>
-                                <option value="1">Level 1</option>
-                                <option value="2">Level 2</option>
-                            </select>
-                        </div>
-
                         <div class="mb-3 icon">
                             <label for="" class="form-lable">Link Icon</label>
-                            <input type="text" class="form-control" name="icon" placeholder="Nhập link Icon">
+                            <input type="text" class="form-control" name="icon" placeholder="Nhập link Icon" required>
                         </div>
 
-                        <div class="mb-3 select-category-parent" style="display: none">
-                            <label for="" class="form-lable">Chọn danh mục cha</label>
-                            <select class="form-select"  name="category_parent">
-                                <option value="" selected>Chọn danh mục cha</option>
-                                @foreach ($categoriesSelect as $it)
-                                    <option value="{{ $it->id }}">{{ $it->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
                         <button type="submit" class="btn btn-info" >Thêm mới</button>
                     </form>
                 </div>
@@ -157,42 +117,7 @@
     <div id="dialog-edit"></div>
     <div id="dialog-delete"></div>
     <script>
-        document.querySelectorAll('.parent-row').forEach(row => {
-            row.addEventListener('dblclick', () => {
-                let subRows = row.nextElementSibling;
-
-                while (subRows && subRows.classList.contains('sub-row')) {
-                    subRows.classList.toggle('show');
-                    subRows = subRows.nextElementSibling;
-                }
-            });
-        });
-        function OnSelectCategoryParent(){
-            document.querySelectorAll('.select-level').forEach((element) => {
-                element.addEventListener('change', () =>{
-                    const value = parseInt(element.value, 10);
-                    const parentCategories = document.querySelectorAll('.select-category-parent');
-                    const Icon = document.querySelectorAll('.icon');
-
-                    if (value === 2) {
-                        parentCategories.forEach((el) => {
-                            el.style.display = 'block';
-                        });
-                        Icon.forEach((i) => {
-                            i.style.display = 'none';
-                        })
-                    } else {
-                        parentCategories.forEach((el) => {
-                            el.style.display = 'none';
-                        });
-                        Icon.forEach((i) => {
-                            i.style.display = 'block';
-                        })
-                    }
-
-                })
-            })
-        }
+        
         document.querySelectorAll('.avtar-edit').forEach((element) => {
             element.addEventListener('click', async () =>{
                 const id = element.dataset.id;
@@ -228,27 +153,10 @@
                                                                                                 <label for="" class="form-lable">Tên danh mục</label>
                                                                                                 <input type="text" class="form-control" name="name" placeholder="Nhập tên danh mục" value="${category.name}" required>
                                                                                             </div>
-                                                                                            <div class="mb-3">
-                                                                                            <label for="" class="form-lable">Chọn level</label>
-                                                                                                <select class="form-select select-level" name="level" required>
-                                                                                                    <option value="">Chọn level</option>
-                                                                                                    <option value="1" ${category.level == 1? 'selected': ''}>Level 1</option>
-                                                                                                    <option value="2" ${category.level == 2? 'selected': ''}>Level 2</option>
-                                                                                                </select>
-                                                                                            </div>
+                                                                                            
                                                                                             <div class="mb-3 icon">
                                                                                                 <label for="" class="form-lable">Link Icon</label>
                                                                                                 <input type="text" class="form-control" name="icon" value="${category.icon}" placeholder="Nhập link Icon">
-                                                                                            </div>
-
-                                                                                            <div class="mb-3 select-category-parent" ${category.category_parent? 'style="display: block"': 'style="display: none"' } >
-                                                                                                <label for="" class="form-lable">Chọn danh mục cha</label>
-                                                                                                <select class="form-select" name="category_parent">
-                                                                                                    <option value="0">Chọn danh mục cha</option>
-                                                                                                    @foreach ($categoriesSelect as $it)
-                                                                                                        <option value="{{ $it->id }}" ${category.category_parent == '{{ $it->id }}' ? 'selected' : ''}>{{ $it->name }}</option>
-                                                                                                    @endforeach
-                                                                                                </select>
                                                                                             </div>
 
                                                                                             <button type="submit" class="btn btn-info" >Cập nhật</button>
@@ -257,7 +165,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>`.replace(':id', id);
-                    OnSelectCategoryParent();
                     const modal = new bootstrap.Modal(document.getElementById('edit-category'));
                     modal.show();
                 }
@@ -297,6 +204,5 @@
                 }
             });
         });
-        OnSelectCategoryParent();
     </script>
 @endsection

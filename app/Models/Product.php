@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'short_description', 'description', 'price', 'stock_quantity', 'category_id', 'total_purchases', 'is_on_featured', 'sale_price', 'view_count'];
+    protected $fillable = ['name', 'short_description', 'description', 'price', 'stock_quantity', 'category_id', 'total_purchases', 'sale_price', 'view_count'];
 
     public function category()
     {

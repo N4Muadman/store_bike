@@ -22,7 +22,7 @@ class CategoriesFooter extends Component
      */
     public function render(): View|Closure|string
     {
-        $categories = Category::where('level', 1)->OrderBy('name')->get();
+        $categories = Category::OrderBy('name')->get();
         return view('components.categories-footer', compact('categories'));
     }
 }

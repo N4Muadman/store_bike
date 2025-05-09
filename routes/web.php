@@ -73,7 +73,7 @@ Route::middleware('is_admin')->prefix('admin')->group(function ()  {
 
     Route::resource('quan-ly-san-pham', AdminProductController::class)->names('admin.products');
     Route::delete('quan-ly-san-pham/{id}/xoa-anh', [AdminProductController::class, 'deleteImage'])->name('admin.product.image.delete');
-    Route::delete('quan-ly-san-pham/{id}/xoa-dac-diem', [AdminProductController::class, 'deleteCharacteristic'])->name('admin.product.color.characteristic');
+    Route::post('/upload-image-product', [AdminProductController::class, 'uploadImageDescription'])->name('upload.image.product');
 
     Route::resource('quan-ly-bai-viet', PostController::class)->names('admin.posts');
     Route::resource('danh-muc-san-pham', CategoryProductController::class)->names('admin.category.product');

@@ -24,7 +24,7 @@ class ProductController extends Controller
         }
 
         $products = $productQuery->orderBy('created_at', 'DESC')->paginate(10);
-        $categories = Category::where('level', 2)->orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
 
         return view('admin.product.index', compact('products', 'categories'));
     }
@@ -50,16 +50,12 @@ class ProductController extends Controller
             'category_id' => 'required',
             'images' => 'required|array',
             'images.*' => 'file|mimes:png,jpeg,gif,jpg,webp',
-            'characteristics' => 'required|array'
         ]);
 
         try{
             DB::beginTransaction();
             $price = preg_replace('/[^0-9]/', '', $request->price);
             $sale_price = $request->sale_price ? preg_replace('/[^0-9]/', '', $request->sale_price) : 0;
-
-            $isOnSale = $request->has('is_on_sale') ? 1 : 0;
-            $isOnFeature = $request->has('is_on_featured') ? 1 : 0;
 
             $product = Product::create([
                 'name' => $request->name,
@@ -68,8 +64,6 @@ class ProductController extends Controller
                 'category_id' => $request->category_id,
                 'short_description' => $request->short_description,
                 'description' => $request->description,
-                'is_on_sale' => $isOnSale,
-                'is_on_featured' => $isOnFeature,
                 'sale_price' => $sale_price
             ]);
 
@@ -88,7 +82,7 @@ class ProductController extends Controller
                 }
             }
 
-            $product->characteristics()->createMany($request->characteristics);
+            // $product->characteristics()->createMany($request->characteristics);
 
             DB::commit();
 
@@ -113,7 +107,7 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::with('images', 'category')->find($id);
-        $categories = Category::where('level', 2)->orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
 
         if (!$product) {
             return redirect()->back()->with('error', 'Sản phẩm không tồn tại');
@@ -146,8 +140,6 @@ class ProductController extends Controller
             $price = preg_replace('/[^0-9]/', '', $request->price);
             $sale_price = $request->sale_price ? preg_replace('/[^0-9]/', '', $request->sale_price) : 0;
 
-            $isOnSale = $request->has('is_on_sale') ? 1 : 0;
-            $isOnFeature = $request->has('is_on_featured') ? 1 : 0;
 
             $product->update([
                 'name' => $request->name,
@@ -156,8 +148,6 @@ class ProductController extends Controller
                 'category_id' => $request->category_id,
                 'short_description' => $request->short_description,
                 'description' => $request->description,
-                'is_on_sale' => $isOnSale,
-                'is_on_featured' => $isOnFeature,
                 'sale_price' => $sale_price
             ]);
 
@@ -242,6 +232,26 @@ class ProductController extends Controller
             'masaage' => 'Xóa ảnh thành công',
             'images' => $images,
         ], 200);
+    }
+
+    public function uploadImageDescription(Request $request){
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp',
+            ]);
+
+            $fileName = time() . '_' .$file->getClientOriginalName();
+            $path = '/uploads/products/descriptions/' . $fileName;
+            $file->move(public_path('uploads/products/descriptions'), $fileName);
+            return response()->json([
+                'url' => $path,
+            ]);
+        }
+
+        return response()->json(['error' => 'No file uploaded'], 400);
     }
 
 }

@@ -47,9 +47,9 @@
                                     <th>Tên</th>
                                     <th>Ảnh</th>
                                     <th>Giá bán</th>
+                                    <th>Giá sau khi giảm</th>
                                     <th>Số lượng trong kho</th>
                                     <th>Đã bán</th>
-                                    <th>Giá sau khi giảm</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </thead>
@@ -94,7 +94,7 @@
                             </tbody>
                         </table>
                         <div class="ps-5 pe-5">
-                            {{ $products->links('pagination::bootstrap-5') }}
+                            {{ $products->appends(array_filter(request()->query()))->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>
@@ -159,6 +159,7 @@
                                                     <label class="form-label">Danh mục</label>
                                                     <select name="category_id" class="form-select" id=""
                                                         required>
+                                                        <option value="">Chọn danh mục</option>
                                                         @foreach ($categories as $it)
                                                             <option value="{{ $it->id }}">{{ $it->name }}
                                                             </option>
@@ -174,46 +175,26 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-xl-12">
-                                                <div class="border rounded p-3 h-100">
-                                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                                        <p class="mb-0 f-18">Đặc điểm sản phẩm</p>
-                                                        <label class="custom-file-upload" id="add-characteristics">
-                                                            <i class="fas fa-plus"></i>
-                                                            Thêm Đặc Điểm
-                                                        </label>
-                                                    </div>
-                                                    <div class="" id="product-characteristics">
-                                                        <div class="row justify-content-between mb-3">
-                                                            <div class="col-6 d-flex align-items-center">
-                                                                <label for="" style="min-width: 95px" class="me-3">Tên đặc điểm</label>
-                                                                <input type="text" class="form-control" name="characteristics[0][name]"
-                                                                    placeholder="Tên đặc điểm" required>
-                                                            </div>
-                                                            <div class="col-5 d-flex align-items-center">
-                                                                <label for="" style="min-width: 45px" class="me-3">Mô tả</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="characteristics[0][description]" placeholder="Mô tả" required>
-                                                            </div>
-                                                            <div class="col-1 text-end mt-2">
-                                                                <button type="button"
-                                                                    class="btn btn-sm remove-characteristics"><i
-                                                                        class="ti ti-trash text-danger f-20 remove-characteristics"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="col-12">
                                                 <div class="mb-3 mb-0"><label class="form-label">Mô tả ngắn</label>
-                                                    <textarea class="form-control" name="short_description" rows="3" placeholder="Mô tả ngắn" required></textarea>
+                                                    <div id="quill-editor-short-description" class="mb-3"
+                                                        style="height: 250px;">
+                                                    </div>
+                                                    <textarea rows="3" class="mb-3 d-none" name="short_description" id="quill-editor-area-short-description">
+                                                    </textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="mb-3 mb-0"><label class="form-label">Mô tả sản phẩm</label>
-                                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Mô tả sản phẩm"></textarea>
+                                                    <div id="quill-editor-description" class="mb-3"
+                                                        style="height: 400px;">
+                                                    </div>
+                                                    <textarea rows="3" class="mb-3 d-none" name="description" id="quill-editor-area-description">
+                                                    </textarea>
                                                 </div>
                                             </div>
+
 
                                             <div class="col-12">
                                                 <div class="row align-items-end justify-content-end g-3">
@@ -232,18 +213,106 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.tiny.cloud/1/qf4pnfpic603nbrs0wu0r3cyaadnairp5ngpr08muctqj041/tinymce/7/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://unpkg.com/quill-image-resize-module@latest/image-resize.min.js"></script>
     <script>
-        let colorIndex = 1;
-        tinymce.init({
-            selector: '#description',
-            advcode_inline: true,
-            menubar: false,
-            plugins: 'searchreplace autolink directionality visualblocks visualchars image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap linkchecker emoticons autosave fullscreen',
-            toolbar: "undo redo print spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | alignleft aligncenter alignright alignjustify | code",
-            height: '450px'
+        document.addEventListener('DOMContentLoaded', function() {
+            quill('quill-editor-area-short-description', '#quill-editor-short-description')
+            quill('quill-editor-area-description', '#quill-editor-description')
         });
+        
+        function quill(idEditorErea, idEditor) {
+            if (document.getElementById(idEditorErea)) {
+                var editor = new Quill(idEditor, {
+                    theme: 'snow',
+                    modules: {
+                        toolbar: [
+                            // Thêm nhiều tùy chọn định dạng
+                            [{
+                                'font': []
+                            }],
+                            [{
+                                'size': ['small', false, 'large', 'huge']
+                            }],
+                            [{
+                                'header': [1, 2, 3, 4, 5, 6, false]
+                            }],
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{
+                                'color': []
+                            }, {
+                                'background': []
+                            }],
+                            // Thêm tùy chọn căn chỉnh
+                            [{
+                                'align': ['', 'center', 'right', 'justify']
+                            }],
+                            ['blockquote', 'code-block'],
+                            [{
+                                'list': 'ordered'
+                            }, {
+                                'list': 'bullet'
+                            }, {
+                                'indent': '-1'
+                            }, {
+                                'indent': '+1'
+                            }],
+                            ['link', 'image', 'video'],
+                            ['clean'],
+                            // Thêm tùy chọn script/subscript
+                            [{
+                                'script': 'sub'
+                            }, {
+                                'script': 'super'
+                            }],
+                            // Thêm tùy chọn direction
+                            [{
+                                'direction': 'rtl'
+                            }]
+                        ],
+                        imageResize: true 
+                        
+                    }
+                });
+                editor.getModule('toolbar').addHandler('image', function() {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'file');
+                    input.setAttribute('accept', 'image/*');
+                    input.click();
+
+                    input.onchange = function() {
+                        var file = input.files[0];
+                        if (file) {
+                            var formData = new FormData();
+                            formData.append('image', file);
+
+                            fetch('{{ route('upload.image.product') }}', {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    },
+                                    body: formData
+                                })
+                                .then(response => response.json())
+                                .then(result => {
+                                    const url = result.url;
+                                    const range = editor.getSelection();
+                                    editor.insertEmbed(range.index, 'image',
+                                        url);
+                                })
+                                .catch(error => console.error('Error uploading image:', error));
+                        }
+                    };
+                });
+                var quillEditor = document.getElementById(idEditorErea);
+                editor.on('text-change', function() {
+                    quillEditor.value = editor.root.innerHTML;
+                });
+                quillEditor.addEventListener('input', function() {
+                    editor.root.innerHTML = quillEditor.value;
+                });
+            }
+        }
         document.getElementById('file-upload').addEventListener('change', function(event) {
             var files = event.target.files;
 
@@ -318,40 +387,6 @@
                     modal.show();
                 }
             })
-        });
-
-        document.getElementById('add-characteristics').addEventListener('click', () => {
-            const container = document.getElementById('product-characteristics');
-
-            const newColor = document.createElement('div');
-            newColor.className = 'row justify-content-between mb-3';
-
-            newColor.innerHTML = `
-                <div class="row justify-content-between mb-3">
-                    <div class="col-6 d-flex align-items-center">
-                                                                <label for="" style="min-width: 95px" class="me-3">Tên đặc điểm</label>
-                                                                <input type="text" class="form-control" name="characteristics[${colorIndex}][name]"
-                                                                    placeholder="Tên đặc điểm" required>
-                                                            </div>
-                                                            <div class="col-5 d-flex align-items-center">
-                                                                <label for="" style="min-width: 45px" class="me-3">Mô tả</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="characteristics[${colorIndex}][description]" placeholder="Mô tả" required>
-                                                            </div>
-                                                            <div class="col-1 text-end mt-2">
-                                                                <button type="button" class="btn btn-sm remove-characteristics"><i class="ti ti-trash text-danger f-20 remove-characteristics"></i></button>
-                                                            </div>
-                                                        </div>
-            `;
-
-            container.appendChild(newColor);
-
-            colorIndex++;
-        })
-        document.getElementById('product-characteristics').addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-characteristics')) {
-                e.target.closest('.row').remove();
-            }
         });
     </script>
 @endsection

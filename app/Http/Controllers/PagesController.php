@@ -17,13 +17,13 @@ class PagesController extends Controller
     {
         $productQuery = Product::with('images');
 
-        $categories = Category::with('categoryChilden')->where('level', 1)->OrderBy('name')->get();
+        $categories = Category::OrderBy('name')->get();
 
-        $products = (clone $productQuery)->inRandomOrder()->take(16)->get();
+        $products = (clone $productQuery)->inRandomOrder()->take(8)->get();
 
-        $saleProducts = (clone $productQuery)->where('sale_price', '>', 0)->orderByDesc('created_at')->take(16)->get();
+        $saleProducts = (clone $productQuery)->where('sale_price', '>', 0)->orderByDesc('created_at')->take(8)->get();
 
-        $bestSellingProducts = (clone $productQuery)->OrderBy('total_purchases')->take(16)->get();
+        $bestSellingProducts = (clone $productQuery)->OrderBy('total_purchases')->take(8)->get();
 
         return view('pages.home', compact('categories','products' ,'saleProducts', 'bestSellingProducts'));
     }
