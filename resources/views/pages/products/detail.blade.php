@@ -94,7 +94,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="my-3">{{ $product->short_description }}</p>
+                            <div class="my-3">
+                                {!! $product->short_description!!}
+                            </div>
                             <hr class="my-6">
                             <div>
                                 <table class="table table-borderless">
