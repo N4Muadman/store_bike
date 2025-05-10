@@ -41,7 +41,7 @@
                                     $rating =
                                         $product->reviews->count() > 0
                                             ? $product->reviews->sum('rating') / $product->reviews->count()
-                                            : 0;
+                                            : 5;
                                 @endphp
 
                                 <small class="text-warning">
@@ -52,33 +52,49 @@
                                 </small>
                                 <a href="#" class="ms-2">({{ $product->reviews->count() }} đánh giá)</a>
                             </div>
-                            <div class="row">
-                                <div class="col-12 fs-4">
-                                    <span
-                                        class="fw-bold theme-text-primary">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
-                                        đ</span>
-                                    <span
-                                        class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}</span>
+                            @if ($product->price > 0)
+                                <div class="row">
+                                    <div class="col-12 fs-4">
+                                        <span
+                                            class="fw-bold theme-text-primary">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
+                                            đ</span>
+                                        <span
+                                            class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}</span>
 
-                                </div>
-                                <div class="col-6">
-                                    <div class="input-group input-spinner">
-                                        <span class="button-minus btn btn-sm">-</span>
-                                        <input type="text" value="1" name="quantity"
-                                            class="quantity-field form-control-sm form-input">
-                                        <span class="button-plus btn btn-sm">+</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group input-spinner">
+                                            <span class="button-minus btn btn-sm">-</span>
+                                            <input type="text" value="1" name="quantity"
+                                                class="quantity-field form-control-sm form-input">
+                                            <span class="button-plus btn btn-sm">+</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr class="my-6">
-                            <div class="mt-3 row justify-content-start g-2 align-items-center">
-                                <div class="col-12 col-md-6">
-                                    <button type="submit"
-                                        class="custom-btn-primary font-small button-effect justify-content-center align-items-center d-flex w-100">
-                                        <i class="feather-icon icon-shopping-bag me-2"></i>Thêm vào giỏ hàng
-                                    </button>
+                                <hr class="my-6">
+                                <div class="mt-3 row justify-content-start g-2 align-items-center">
+                                    <div class="col-12 col-md-6">
+                                        <button type="submit"
+                                            class="custom-btn-primary font-small button-effect justify-content-center align-items-center d-flex w-100">
+                                            <i class="feather-icon icon-shopping-bag me-2"></i>Thêm vào giỏ hàng
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <p class="fs-3">Giá: <a class="text">Liên hệ</a></p>
+                                <hr class="my-6">
+                                <div class="mt-0 mt-lg-3 row justify-content-start g-2 align-items-center">
+                                    <div class="col-6">
+                                        <!-- button -->
+                                        <div class="custom-button">
+                                            <a data-bs-toggle="modal" data-bs-target="#contactModal"
+                                                class="btn custom-demo-btn m-0">
+                                                <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <hr class="my-6">
                             <div>
                                 <table class="table table-borderless">
@@ -180,4 +196,3 @@
         return false;
     });
 </script>
-

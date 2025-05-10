@@ -44,7 +44,7 @@
                                 <div class="mb-3 mb-0">
                                     <label class="form-label">Giá bán sản phẩm</label>
                                     <input type="text" name="price" class="form-control money"
-                                        placeholder="Giá sản phẩm" required value="{{ $product->price }}">
+                                        placeholder="Giá sản phẩm" value="{{ $product->price }}">
                                 </div>
                             </div>
                             <div class="col-xl-12">

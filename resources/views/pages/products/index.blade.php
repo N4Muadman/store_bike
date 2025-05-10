@@ -28,29 +28,38 @@
                     <div class="d-sm-flex justify-content-between align-items-center align-items-center">
                         <div class="d-flex flex-column flex-sm-row mb-3 mb-sm-0">
                             <form action="{{ route('product.index') }}" method="get" id="sortForm">
-                                
-                                @foreach(request()->except('sort') as $key => $value)
-                                    @if(is_array($value))
-                                        @foreach($value as $item)
+
+                                @foreach (request()->except('sort') as $key => $value)
+                                    @if (is_array($value))
+                                        @foreach ($value as $item)
                                             <input type="hidden" name="{{ $key }}[]" value="{{ $item }}">
                                         @endforeach
                                     @else
                                         <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                                     @endif
                                 @endforeach
-                            
-                                <select name="sort" class="border theme-border-radius min-h px-2" onchange="document.getElementById('sortForm').submit();">
-                                    <option value="" {{ request('sort') == '' ? 'selected' : '' }}>Sắp xếp: Mặc định</option>
-                                    <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Giá: Nhỏ đến lớn</option>
-                                    <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Giá: Lớn đến nhỏ</option>
-                                    <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Từ A-Z</option>
-                                    <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Từ Z-A</option>
-                                    <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Từ cũ đến mới</option>
-                                    <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Từ mới đến cũ</option>
+
+                                <select name="sort" class="border theme-border-radius min-h px-2"
+                                    onchange="document.getElementById('sortForm').submit();">
+                                    <option value="" {{ request('sort') == '' ? 'selected' : '' }}>Sắp xếp: Mặc định
+                                    </option>
+                                    <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Giá:
+                                        Nhỏ đến lớn</option>
+                                    <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Giá:
+                                        Lớn đến nhỏ</option>
+                                    <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Từ A-Z
+                                    </option>
+                                    <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Từ Z-A
+                                    </option>
+                                    <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Từ cũ đến
+                                        mới</option>
+                                    <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Từ mới đến
+                                        cũ</option>
                                 </select>
                             </form>
                         </div>
-                        <p class="mb-3 mb-sm-0 mb-lg-0 theme-text-accent-one">Kết quả: {{ $products->count() }} sản phẩm</p>
+                        <p class="mb-3 mb-sm-0 mb-lg-0 theme-text-accent-one">Kết quả: {{ $products->count() }} sản phẩm
+                        </p>
                         <!-- icon -->
                         <div class="d-md-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center justify-content-between">
@@ -197,17 +206,26 @@
                                             <div class="view">
                                                 <a href="#!" class="view-btn"data-id="{{ $product->id }}">
                                                     <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" data-bs-title="Quick View"></i>
+                                                        data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                 </a>
-                                                <button type="submit" class="btn view-btn">
-                                                    <i class="bi bi-bag" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Add to cart"></i>
-                                                </button>
+                                                @if ($product->price > 0)
+                                                    <button type="submit" class="btn view-btn">
+                                                        <i class="bi bi-bag" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top"
+                                                            data-bs-title="Thêm vào giỏi hàng"></i>
+                                                    </button>
+                                                @else
+                                                    <a href="#!" data-bs-toggle="modal"
+                                                        data-bs-target="#contactModal" class="view-btn">
+                                                        <i class="bi bi-telephone-outbound" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" data-bs-title="Liên hệ"></i>
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="con-wrap mt-4">
                                             <a href="{{ route('product.detail', $product->id) }}"
-                                                class="mb-4 d-block text text-truncate">{{ $product->name }}</a>
+                                                class="mb-2 d-block text text-truncate">{{ $product->name }}</a>
                                             <div class="rating-cover ">
                                                 @php
                                                     $rating =
@@ -225,19 +243,34 @@
                                                     @endfor
                                                 </span>
                                             </div>
-                                            <div class="align-self-center mb-2 product-price">
-                                                <span
-                                                    class="ms-1 fs-6 fw-bold">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
-                                                    đ</span>
-                                                <span
-                                                    class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}
-                                                </span>
-                                            </div>
-                                            <div class="d-flex justify-content-end align-items-center">
-                                                <button href="javascript:void(0)" class="btn mb-0 transition-3d-hover"
-                                                    style="color: #e40202">Thêm vào giỏ hàng<i
-                                                        class="bi bi-bag ms-2"></i></button>
-                                            </div>
+
+                                            @if ($product->price > 0)
+                                                <div class="align-self-center mb-2 product-price">
+                                                    <span
+                                                        class="ms-1 fs-6 fw-bold">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
+                                                        đ</span>
+                                                    <span
+                                                        class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}
+                                                    </span>
+                                                </div>
+                                                <div class="d-flex justify-content-end align-items-center">
+                                                    <button class="btn mb-0 transition-3d-hover"
+                                                        style="color: #e40202">Thêm vào giỏ hàng<i
+                                                            class="bi bi-bag ms-2"></i></button>
+                                                </div>
+                                            @else
+                                                <div class="align-self-center mb-2 product-price">
+                                                    Giá: <a class="ms-1 fs-6 fw-bold text">Liên hệ</a>
+                                                </div>
+
+                                                <div class="d-flex justify-content-end align-items-center">
+
+                                                    <a data-bs-toggle="modal" data-bs-target="#contactModal"
+                                                        class="btn mb-0 transition-3d-hover" style="color: #e40202">
+                                                        <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </form>

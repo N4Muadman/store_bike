@@ -19,8 +19,8 @@ class ProductController extends Controller
     {
         $productQuery = Product::with('images');
 
-        if ($request->name){
-            $productQuery->where('name', 'like', '%' . $request->name .'%');
+        if ($request->name) {
+            $productQuery->where('name', 'like', '%' . $request->name . '%');
         }
 
         $products = $productQuery->orderBy('created_at', 'DESC')->paginate(10);
@@ -45,17 +45,23 @@ class ProductController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'price' => 'required',
+            'price' => 'nullable',
             'stock_quantity' => 'required',
             'category_id' => 'required',
             'images' => 'required|array',
             'images.*' => 'file|mimes:png,jpeg,gif,jpg,webp',
         ]);
 
-        try{
+        try {
             DB::beginTransaction();
-            $price = preg_replace('/[^0-9]/', '', $request->price);
-            $sale_price = $request->sale_price ? preg_replace('/[^0-9]/', '', $request->sale_price) : 0;
+            $price = $request->price ? (int)preg_replace('/[^0-9]/', '', $request->price) : 0;
+            $sale_price = $request->sale_price ? (int)preg_replace('/[^0-9]/', '', $request->sale_price) : 0;
+            $sale_price = $price == 0 ? 0 : $sale_price;
+
+            if ($price > 0 && $price <= $sale_price) {
+                DB::rollBack();
+                return redirect()->back()->with('error', 'Giá bán phải lớn hơn giá sau khi giảm');
+            }
 
             $product = Product::create([
                 'name' => $request->name,
@@ -87,9 +93,9 @@ class ProductController extends Controller
             DB::commit();
 
             return redirect()->back()->with('success', 'Thêm mới sản phẩm thành công');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xảy ra' .$e->getMessage());
+            return redirect()->back()->with('error', 'Có lỗi xảy ra' . $e->getMessage());
         }
     }
 
@@ -123,23 +129,28 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'price' => 'required',
+            'price' => 'nullable',
             'stock_quantity' => 'required',
             'category_id' => 'required',
             'images' => 'nullable|array',
             'images.*' => 'file|mimes:png,jpeg,gif,jpg,webp',
         ]);
 
-        try{
+        try {
             $product = Product::find($id);
 
-            if(!$product){
+            if (!$product) {
                 return redirect()->back()->with('error', 'Sản phẩm không tồn tại');
             }
 
-            $price = preg_replace('/[^0-9]/', '', $request->price);
-            $sale_price = $request->sale_price ? preg_replace('/[^0-9]/', '', $request->sale_price) : 0;
+            $price = $request->price ? (int)preg_replace('/[^0-9]/', '', $request->price) : 0;
+            $sale_price = $request->sale_price ? (int)preg_replace('/[^0-9]/', '', $request->sale_price) : 0;
+            $sale_price = $price == 0 ? 0 : $sale_price;
 
+            if ($price > 0 && $price <= $sale_price) {
+                DB::rollBack();
+                return redirect()->back()->with('error', 'Giá bán phải lớn hơn giá sau khi giảm');
+            }
 
             $product->update([
                 'name' => $request->name,
@@ -166,12 +177,12 @@ class ProductController extends Controller
                 }
             }
 
-            
+
             // $product->characteristics()->delete();
             // $product->characteristics()->createMany($request->characteristics);
 
             return redirect()->route('admin.products.index')->with('success', 'Cập nhật sản phẩm thành công');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Có lỗi xảy ra');
         }
     }
@@ -181,41 +192,42 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        try{
+        try {
             $product = Product::find($id);
 
-            if (!$product){
+            if (!$product) {
                 return redirect()->back()->with('error', 'Sản phẩm không tồn tại');
             }
 
             DB::beginTransaction();
 
             $product->delete();
-    
-            foreach($product->images as $image){
+
+            foreach ($product->images as $image) {
                 if ($image->image_path && file_exists(public_path($image->image_path))) {
                     unlink(public_path($image->image_path));
                 }
             }
-    
+
             // $product->images()->delete();
             // $product->reviews()->delete();
             // $product->characteristics()->delete();
             // $product->views()->delete();
-            
+
             DB::commit();
 
             return redirect()->back()->with('success', 'Xóa sản phẩm thành công');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Xóa Sản phẩm không thành công' .$e);
+            return redirect()->back()->with('error', 'Xóa Sản phẩm không thành công' . $e);
         }
     }
 
-    public function deleteImage($id){
+    public function deleteImage($id)
+    {
         $image = Image::find($id);
 
-        if(!$image){
+        if (!$image) {
             return response()->json([
                 'masaage' => 'Image not found'
             ], 404);
@@ -234,7 +246,8 @@ class ProductController extends Controller
         ], 200);
     }
 
-    public function uploadImageDescription(Request $request){
+    public function uploadImageDescription(Request $request)
+    {
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -243,7 +256,7 @@ class ProductController extends Controller
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp',
             ]);
 
-            $fileName = time() . '_' .$file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $path = '/uploads/products/descriptions/' . $fileName;
             $file->move(public_path('uploads/products/descriptions'), $fileName);
             return response()->json([
@@ -253,5 +266,4 @@ class ProductController extends Controller
 
         return response()->json(['error' => 'No file uploaded'], 400);
     }
-
 }

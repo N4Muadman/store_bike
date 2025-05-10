@@ -5,7 +5,7 @@
 @section('content')
     <section class="hero">
         <div class="carouselhero">
-            <div class="slider-item set-bg" data-setbg="/assets/images/slider/banner.jpg" >
+            <div class="slider-item set-bg" data-setbg="/assets/images/slider/banner.jpg">
                 {{-- <div class="container">
                 <div class="row">
                     <div class="col-12 text-start position-relative">
@@ -142,46 +142,85 @@
                                             <input type="text" name="product_id" hidden value="{{ $product->id }}">
                                             <div class="card-wrap theme-border-radius px-4 py-4">
                                                 <div class="con-img-wrap m-auto product-quick-view">
-                                                    <img src="{{$product->images->first()?->image_path}}"
+                                                    <img src="{{ $product->images->first()?->image_path }}"
                                                         class="img-fluid mx-auto d-block" alt="product picture">
                                                     {{-- <div class="deal-badge">
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn"data-id="{{$product->id}}">
+                                                        <a href="#!" class="view-btn"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Quick View"></i>
+                                                                data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
-                                                        <button type="submit" class="btn view-btn">
-                                                            <i class="bi bi-bag" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Add to cart"></i>
-                                                        </button>
+                                                        @if ($product->price > 0)
+                                                            <button type="submit" class="btn view-btn">
+                                                                <i class="bi bi-bag" data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top"
+                                                                    data-bs-title="Thêm vào giỏi hàng"></i>
+                                                            </button>
+                                                        @else
+                                                            <a href="#!" data-bs-toggle="modal"
+                                                                data-bs-target="#contactModal" class="view-btn">
+                                                                <i class="bi bi-telephone-outbound"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    data-bs-title="Liên hệ"></i>
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="con-wrap mt-4">
-                                                    <a href="{{route('product.detail', $product->id)}}" class="mb-4 d-block text text-truncate">{{$product->name}}</a>
-                                                    <div class="rating-cover ">
+                                                    <a href="{{ route('product.detail', $product->id) }}"
+                                                        class="mb-2 d-block text text-truncate">{{ $product->name }}</a>
+                                                    <div class="rating-cover mb-1">
                                                         @php
-                                                            $rating = $product->reviews->count() > 0 ? $product->reviews->sum('rating') / $product->reviews->count() : 5;
+                                                            $rating =
+                                                                $product->reviews->count() > 0
+                                                                    ? $product->reviews->sum('rating') /
+                                                                        $product->reviews->count()
+                                                                    : 5;
                                                         @endphp
-    
+
                                                         <span class="ml-5">
-    
+
                                                             @for ($i = 1; $i <= 5; $i++)
-                                                                <i class="bi {{ $i <= $rating ? 'bi-star-fill' : 'bi-star' }}"></i>
+                                                                <i
+                                                                    class="bi {{ $i <= $rating ? 'bi-star-fill' : 'bi-star' }}"></i>
                                                             @endfor
                                                         </span>
                                                     </div>
-                                                    <div class="align-self-center mb-2 product-price">
-                                                        <span class="ms-1 fs-6 fw-bold">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }} đ</span>
-                                                        <span class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) .' đ' : ''}} </span>
-                                                    </div>
-    
-                                                    <div class="d-flex justify-content-between align-items-center flex-column">
-                                                        
-                                                        <button type="submit" class="btn mb-0 add-to-cart">Thêm vào giỏ hàng<i
-                                                                class="bi bi-bag ms-2"></i></button>
-                                                    </div>
+
+                                                    @if ($product->price > 0)
+                                                        <div class="align-self-center mb-2 product-price">
+                                                            <span
+                                                                class="ms-1 fs-6 fw-bold">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
+                                                                đ</span>
+                                                            <span
+                                                                class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}
+                                                            </span>
+                                                        </div>
+
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center flex-column">
+
+                                                            <button type="submit"
+                                                                class="btn custom-demo-btn w-100 m-0 ">Thêm vào
+                                                                giỏ
+                                                                hàng<i class="bi bi-bag ms-2"></i></button>
+                                                        </div>
+                                                    @else
+                                                        <div class="align-self-center mb-2 product-price">
+                                                            Giá: <span class="ms-1 fs-6 fw-bold">Liên hệ</span>
+                                                        </div>
+
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center flex-column">
+
+                                                            <a data-bs-toggle="modal" data-bs-target="#contactModal"
+                                                                class="btn custom-demo-btn w-100 m-0 ">
+                                                                <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
+                                                            </a>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </form>
@@ -210,46 +249,85 @@
                                             <input type="text" name="product_id" hidden value="{{ $product->id }}">
                                             <div class="card-wrap theme-border-radius px-4 py-4">
                                                 <div class="con-img-wrap m-auto product-quick-view">
-                                                    <img src="{{$product->images->first()?->image_path}}"
+                                                    <img src="{{ $product->images->first()?->image_path }}"
                                                         class="img-fluid mx-auto d-block" alt="product picture">
                                                     {{-- <div class="deal-badge">
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn"data-id="{{$product->id}}">
+                                                        <a href="#!" class="view-btn"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Quick View"></i>
+                                                                data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
-                                                        <button type="submit" class="btn view-btn">
-                                                            <i class="bi bi-bag" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Add to cart"></i>
-                                                        </button>
+                                                        @if ($product->price > 0)
+                                                            <button type="submit" class="btn view-btn">
+                                                                <i class="bi bi-bag" data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top"
+                                                                    data-bs-title="Thêm vào giỏi hàng"></i>
+                                                            </button>
+                                                        @else
+                                                            <a href="#!" data-bs-toggle="modal"
+                                                                data-bs-target="#contactModal" class="view-btn">
+                                                                <i class="bi bi-telephone-outbound"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    data-bs-title="Liên hệ"></i>
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="con-wrap mt-4">
-                                                    <a href="{{route('product.detail', $product->id)}}" class="mb-4 d-block text text-truncate">{{$product->name}}</a>
-                                                    <div class="rating-cover ">
+                                                    <a href="{{ route('product.detail', $product->id) }}"
+                                                        class="mb-2 d-block text text-truncate">{{ $product->name }}</a>
+                                                    <div class="rating-cover mb-1">
                                                         @php
-                                                            $rating = $product->reviews->count() > 0 ? $product->reviews->sum('rating') / $product->reviews->count() : 5;
+                                                            $rating =
+                                                                $product->reviews->count() > 0
+                                                                    ? $product->reviews->sum('rating') /
+                                                                        $product->reviews->count()
+                                                                    : 5;
                                                         @endphp
-    
+
                                                         <span class="ml-5">
-    
+
                                                             @for ($i = 1; $i <= 5; $i++)
-                                                                <i class="bi {{ $i <= $rating ? 'bi-star-fill' : 'bi-star' }}"></i>
+                                                                <i
+                                                                    class="bi {{ $i <= $rating ? 'bi-star-fill' : 'bi-star' }}"></i>
                                                             @endfor
                                                         </span>
                                                     </div>
-                                                    <div class="align-self-center mb-2 product-price">
-                                                        <span class="ms-1 fs-6 fw-bold">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }} đ</span>
-                                                        <span class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) .' đ' : ''}} </span>
-                                                    </div>
-    
-                                                    <div class="d-flex justify-content-between align-items-center flex-column">
-                                                        
-                                                        <button type="submit" class="btn mb-0 add-to-cart">Thêm vào giỏ hàng<i
-                                                                class="bi bi-bag ms-2"></i></button>
-                                                    </div>
+
+                                                    @if ($product->price > 0)
+                                                        <div class="align-self-center mb-2 product-price">
+                                                            <span
+                                                                class="ms-1 fs-6 fw-bold">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
+                                                                đ</span>
+                                                            <span
+                                                                class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}
+                                                            </span>
+                                                        </div>
+
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center flex-column">
+
+                                                            <button type="submit"
+                                                                class="btn custom-demo-btn w-100 m-0 ">Thêm vào
+                                                                giỏ
+                                                                hàng<i class="bi bi-bag ms-2"></i></button>
+                                                        </div>
+                                                    @else
+                                                        <div class="align-self-center mb-2 product-price">
+                                                            Giá: <span class="ms-1 fs-6 fw-bold">Liên hệ</span>
+                                                        </div>
+
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center flex-column">
+
+                                                            <a data-bs-toggle="modal" data-bs-target="#contactModal"
+                                                                class="btn custom-demo-btn w-100 m-0 ">
+                                                                <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
+                                                            </a>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </form>
@@ -269,7 +347,7 @@
                         </div>
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                             aria-labelledby="pills-contact-tab">
-                            
+
                             <div class="row mb-4">
                                 @forelse ($saleProducts as $product)
                                     <div class="col-12 col-md-6 col-lg-3 mb-4">
@@ -277,46 +355,85 @@
                                             <input type="text" name="product_id" hidden value="{{ $product->id }}">
                                             <div class="card-wrap theme-border-radius px-4 py-4">
                                                 <div class="con-img-wrap m-auto product-quick-view">
-                                                    <img src="{{$product->images->first()?->image_path}}"
+                                                    <img src="{{ $product->images->first()?->image_path }}"
                                                         class="img-fluid mx-auto d-block" alt="product picture">
                                                     {{-- <div class="deal-badge">
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn"data-id="{{$product->id}}">
+                                                        <a href="#!" class="view-btn"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Quick View"></i>
+                                                                data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
-                                                        <button type="submit" class="btn view-btn">
-                                                            <i class="bi bi-bag" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Add to cart"></i>
-                                                        </button>
+                                                        @if ($product->price > 0)
+                                                            <button type="submit" class="btn view-btn">
+                                                                <i class="bi bi-bag" data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top"
+                                                                    data-bs-title="Thêm vào giỏi hàng"></i>
+                                                            </button>
+                                                        @else
+                                                            <a href="#!" data-bs-toggle="modal"
+                                                                data-bs-target="#contactModal" class="view-btn">
+                                                                <i class="bi bi-telephone-outbound"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    data-bs-title="Liên hệ"></i>
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="con-wrap mt-4">
-                                                    <a href="{{route('product.detail', $product->id)}}" class="mb-4 d-block text text-truncate">{{$product->name}}</a>
-                                                    <div class="rating-cover ">
+                                                    <a href="{{ route('product.detail', $product->id) }}"
+                                                        class="mb-2 d-block text text-truncate">{{ $product->name }}</a>
+                                                    <div class="rating-cover mb-1">
                                                         @php
-                                                            $rating = $product->reviews->count() > 0 ? $product->reviews->sum('rating') / $product->reviews->count() : 5;
+                                                            $rating =
+                                                                $product->reviews->count() > 0
+                                                                    ? $product->reviews->sum('rating') /
+                                                                        $product->reviews->count()
+                                                                    : 5;
                                                         @endphp
-    
+
                                                         <span class="ml-5">
-    
+
                                                             @for ($i = 1; $i <= 5; $i++)
-                                                                <i class="bi {{ $i <= $rating ? 'bi-star-fill' : 'bi-star' }}"></i>
+                                                                <i
+                                                                    class="bi {{ $i <= $rating ? 'bi-star-fill' : 'bi-star' }}"></i>
                                                             @endfor
                                                         </span>
                                                     </div>
-                                                    <div class="align-self-center mb-2 product-price">
-                                                        <span class="ms-1 fs-6 fw-bold">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }} đ</span>
-                                                        <span class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) .' đ' : ''}} </span>
-                                                    </div>
-    
-                                                    <div class="d-flex justify-content-between align-items-center flex-column">
-                                                        
-                                                        <button type="submit" class="btn mb-0 add-to-cart">Thêm vào giỏ hàng<i
-                                                                class="bi bi-bag ms-2"></i></button>
-                                                    </div>
+
+                                                    @if ($product->price > 0)
+                                                        <div class="align-self-center mb-2 product-price">
+                                                            <span
+                                                                class="ms-1 fs-6 fw-bold">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
+                                                                đ</span>
+                                                            <span
+                                                                class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}
+                                                            </span>
+                                                        </div>
+
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center flex-column">
+
+                                                            <button type="submit"
+                                                                class="btn custom-demo-btn w-100 m-0 ">Thêm vào
+                                                                giỏ
+                                                                hàng<i class="bi bi-bag ms-2"></i></button>
+                                                        </div>
+                                                    @else
+                                                        <div class="align-self-center mb-2 product-price">
+                                                            Giá: <span class="ms-1 fs-6 fw-bold">Liên hệ</span>
+                                                        </div>
+
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center flex-column">
+
+                                                            <a data-bs-toggle="modal" data-bs-target="#contactModal"
+                                                                class="btn custom-demo-btn w-100 m-0 ">
+                                                                <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
+                                                            </a>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </form>
@@ -375,7 +492,8 @@
                                         <i class="bi bi-check2-circle fs-2 theme-text-secondary"></i>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
-                                        <p class="mb-0 theme-text-accent-one">Đội ngũ nhân viên am hiểu, nhiệt tình tư vấn.</p>
+                                        <p class="mb-0 theme-text-accent-one">Đội ngũ nhân viên am hiểu, nhiệt tình tư vấn.
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -386,7 +504,7 @@
                                         <p class="mb-0 theme-text-accent-one">Chính sách bảo hành uy tín.</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
                                         <i class="bi bi-check2-circle fs-2 theme-text-secondary"></i>
@@ -411,7 +529,7 @@
                             <!-- repetable -->
                         </ul>
                         <div class=" custom-button justify-content-start animate__animated wow animate__backInUp">
-                            <a href="{{route('aboutUs')}}"
+                            <a href="{{ route('aboutUs') }}"
                                 class="btn custom-btn-secondary theme-border fw-bold button-effect px-5">
                                 Khám phá ngay</a>
                         </div>
@@ -427,7 +545,8 @@
                 <div class="col-12 position-relative justify-content-center align-self-center text-center">
                     <div class="mb-5">
                         <div class="max">
-                            <h4 class="display-4 fw-bold theme-text-primary mb-3">Video giới thiệu sản phẩm, hoặc các video khác
+                            <h4 class="display-4 fw-bold theme-text-primary mb-3">Video giới thiệu sản phẩm, hoặc các video
+                                khác
                             </h4>
                         </div>
                         <p class="fs-5 mb-0">Mô tả giới thiệu video</p>
@@ -459,11 +578,13 @@
                 <div class="col-12 animate__animated wow animate__backInUp">
                     <span class="high-text"></span>
                     <div class="ms-0">
-                        <h2 class="fs-1 fw-bold text-start theme-text-primary mb-3">Đồng hành cùng bạn trên con đường khám phá mọi hành trình</h2>
+                        <h2 class="fs-1 fw-bold text-start theme-text-primary mb-3">Đồng hành cùng bạn trên con đường khám
+                            phá mọi hành trình</h2>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p class="mb-5 text-start">Khám phá thế giới xe đạp đa dạng với hàng ngàn mẫu mã, thông tin chi tiết và đội ngũ tư vấn chuyên nghiệp sẵn sàng hỗ trợ bạn</p>
+                            <p class="mb-5 text-start">Khám phá thế giới xe đạp đa dạng với hàng ngàn mẫu mã, thông tin chi
+                                tiết và đội ngũ tư vấn chuyên nghiệp sẵn sàng hỗ trợ bạn</p>
                         </div>
                     </div>
                 </div>
@@ -501,7 +622,8 @@
                         </div>
                         <div class="text">
                             <h3 class="icon-box-title">Cần hỗ trợ</h3>
-                            <p>Đội ngũ tư vấn viên nhiệt tình sẵn sàng hỗ trợ bạn qua chat trực tuyến, điện thoại và email.</p>
+                            <p>Đội ngũ tư vấn viên nhiệt tình sẵn sàng hỗ trợ bạn qua chat trực tuyến, điện thoại và email.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -556,10 +678,10 @@
                                             <span class="theme-text-primary">Khách hàng</span>
                                         </div>
                                         <p class="fs-5 my-4 lh-lg con">
-                                            Cửa hàng có rất nhiều loại xe đạp, từ xe địa hình 
-                                            đến xe đường phố, xe cho trẻ em nữa. Mình rất hài 
-                                            lòng với chiếc xe vừa mua, chất lượng rất tốt, đi 
-                                            êm và chắc chắn. Nhân viên tư vấn nhiệt tình, giúp 
+                                            Cửa hàng có rất nhiều loại xe đạp, từ xe địa hình
+                                            đến xe đường phố, xe cho trẻ em nữa. Mình rất hài
+                                            lòng với chiếc xe vừa mua, chất lượng rất tốt, đi
+                                            êm và chắc chắn. Nhân viên tư vấn nhiệt tình, giúp
                                             mình chọn được chiếc xe phù hợp với nhu cầu.</p>
                                     </div>
                                 </div>
@@ -588,10 +710,10 @@
                                             <span class="theme-text-primary">Khách hàng </span>
                                         </div>
                                         <p class="fs-5 my-4 lh-lg con">
-                                            Mình là người mới bắt đầu tìm hiểu về xe đạp, 
-                                            nhưng nhân viên ở đây đã giải thích rất cặn kẽ 
-                                            và giúp mình chọn được chiếc xe đầu tiên ưng ý. 
-                                            Họ còn hướng dẫn mình cách bảo dưỡng xe nữa. 
+                                            Mình là người mới bắt đầu tìm hiểu về xe đạp,
+                                            nhưng nhân viên ở đây đã giải thích rất cặn kẽ
+                                            và giúp mình chọn được chiếc xe đầu tiên ưng ý.
+                                            Họ còn hướng dẫn mình cách bảo dưỡng xe nữa.
                                             Cảm ơn cửa hàng rất nhiều!</p>
                                     </div>
                                 </div>
@@ -620,7 +742,8 @@
                                             {{-- <span class="theme-text-primary">Lineroad</span> --}}
                                         </div>
                                         <p class="fs-5 my-4 lh-lg con">
-                                            Mua xe đạp ở đây rất thoải mái. Cửa hàng trưng bày đẹp mắt, dễ dàng xem và lựa chọn. Giá cả cũng rất hợp lý so với chất lượng xe. Chắc chắn sẽ quay lại ủng hộ!
+                                            Mua xe đạp ở đây rất thoải mái. Cửa hàng trưng bày đẹp mắt, dễ dàng xem và lựa
+                                            chọn. Giá cả cũng rất hợp lý so với chất lượng xe. Chắc chắn sẽ quay lại ủng hộ!
                                         </p>
                                     </div>
                                 </div>
@@ -649,7 +772,8 @@
                                             {{-- <span class="theme-text-primary">Blinkit IT</span> --}}
                                         </div>
                                         <p class="fs-5 my-4 lh-lg con">
-                                            Mình tin tưởng lựa chọn cửa hàng này vì thấy rất chuyên nghiệp. Xe đạp đều là hàng chính hãng, có bảo hành đầy đủ. Mua xe ở đây cảm thấy yên tâm hơn hẳn.
+                                            Mình tin tưởng lựa chọn cửa hàng này vì thấy rất chuyên nghiệp. Xe đạp đều là
+                                            hàng chính hãng, có bảo hành đầy đủ. Mua xe ở đây cảm thấy yên tâm hơn hẳn.
                                         </p>
 
                                     </div>

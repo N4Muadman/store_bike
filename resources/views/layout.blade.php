@@ -59,7 +59,8 @@
                 <nav
                     class="js-mega-menu navbar navbar-expand-md menu-navbar py-0 hs-menu-initialized hs-menu-horizontal">
                     <a class="navbar-brand p-0" href="{{ route('home') }}" aria-label="Front">
-                        <img src="/assets/images/logo.jpg" width="100px" style="border-radius: 50%" class="img-fluid" alt="Brand Logo" title="Brand Logo">
+                        <img src="/assets/images/logo.jpg" width="100px" style="border-radius: 50%" class="img-fluid"
+                            alt="Brand Logo" title="Brand Logo">
                     </a>
                     <!-- Responsive Toggle Button -->
                     <button type="button" class="navbar-toggler btn u-hamburger" aria-label="Toggle navigation"
@@ -93,11 +94,6 @@
                                     placeholder="Tìm kiếm sản phẩm.." value="{{ request('search') }}" id="">
                             </div>
                         </form>
-
-                        <a href="#offcanvasAccount" class="pe-3 ms-5" role="button" aria-controls="offcanvasAccount"
-                            data-bs-toggle="offcanvas"><i class="bi bi-person-circle fs-4 pe-2" title="Account"></i></a>
-                        <!-- wishlist sction -->
-
 
                         <div class="cart-btn ms-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                             aria-controls="offcanvasRight">
@@ -222,7 +218,8 @@
             </div>
             <div class="row my-4 animate__animated wow animate__backInUp">
                 <div class="position-relative text-center">
-                    <img src="/assets/images/logo.jpg" style="border-radius: 50%" width="100px" class="img-fluid" alt="Logo [Tên Website/Cửa Hàng]">
+                    <img src="/assets/images/logo.jpg" style="border-radius: 50%" width="100px" class="img-fluid"
+                        alt="Logo [Tên Website/Cửa Hàng]">
                 </div>
                 <div class="d-flex flex-row flex-wrap justify-content-center align-items-center position-relative">
                     <ul class="inline-link">
@@ -349,114 +346,71 @@
     <div class="modal fade" id="quickViewModal" tabindex="-1">
 
     </div>
-    <!-- login / signup section -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasAccount"
-        aria-labelledby="offcanvasAccountLabel">
-        <div class="offcanvas-header justify-content-center">
-            <div class="d-flex justify-content-center">
-                <ul class="nav nav-pills deals-tab" id="account-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="domestic-tab" data-bs-toggle="pill"
-                            data-bs-target="#domestic" type="button" role="tab" aria-controls="domestic"
-                            aria-selected="true">Đăng nhập</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="international-tab" data-bs-toggle="pill"
-                            data-bs-target="#international" type="button" role="tab"
-                            aria-controls="international" aria-selected="false">Đăng kí</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="offcanvas-body" id="offcanvasAccountLabel">
-            <div class="row">
-                <div class="col-12">
-                    <div class="tab-content offers-content" id="account-tabContent">
-                        <div class="tab-pane fade show active" id="domestic" role="tabpanel"
-                            aria-labelledby="domestic-tab">
-                            <!-- login tab -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <form class="needs-validation" novalidate>
-                                        <div class="mb-3">
-                                            <label class="form-label fw-bold">Email</label>
-                                            <input type="email" class="form-control form-control-th"
-                                                id="exampleInputEmail1" placeholder="Nhập email của bạn" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label fw-bold">Mật khẩu</label>
-                                            <input type="password" class="form-control form-control-th"
-                                                id="exampleInputPassword1" placeholder="Nhập mật khẩu của bạn"
-                                                required>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                <label class="form-check-label" for="exampleCheck1">Nhớ mật
-                                                    khẩu</label>
-                                            </div>
-                                            <a href="javascript:void(0)" class="font-small">Quên mật khẩu?</a>
-                                        </div>
-                                        <div class="mt-3 mb-3 d-flex align-items-center">
-                                            <button type="submit"
-                                                class="btn custom-btn-primary fw-bold button-effect transition-3d-hover px-4"
-                                                onclick="window.location.href='#';">Đăng nhập</button>
-                                            <span class="font-small">
-                                                <span class="mx-3">Tạo tài khoản ?</span>
-                                                <a href="javascript:void(0)" class="reg-btn">Đăng kí</a>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
+    <div class="modal fade custom-contact-modal" id="contactModal" tabindex="-1"
+        aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">LIÊN HỆ VỚI CHÚNG TÔI</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- Form Liên Hệ -->
+                            <div class="col-md-6">
+                                <form class="custom-contact-form">
+                                    <h4 class="mb-4 text-center" style="color: #e40202;">Gửi Thông Tin</h4>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="contact_name"
+                                            placeholder="Họ và tên" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" id="contact_email"
+                                            placeholder="Email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="tel" class="form-control" id="contact_phone"
+                                            placeholder="Số điện thoại">
+                                    </div>
+                                    <div class="mb-3">
+                                        <select class="form-select" id="contact_subject">
+                                            <option selected disabled>Chọn chủ đề</option>
+                                            <option value="support">Hỗ trợ kỹ thuật</option>
+                                            <option value="sales">Tư vấn dịch vụ</option>
+                                            <option value="feedback">Góp ý</option>
+                                            <option value="other">Khác</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <textarea class="form-control" id="contact_message" rows="4" placeholder="Nội dung tin nhắn" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn custom-btn-submit w-100">GỬI THÔNG TIN</button>
+                                </form>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="international" role="tabpanel"
-                            aria-labelledby="international-tab">
-                            <!-- signup tab -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <form class="needs-validation" novalidate>
-                                        <div class="mb-3">
-                                            <label for="floatingInput" class="form-label fw-bold">Tên của bạn</label>
-                                            <input type="text" class="form-control form-control-th"
-                                                id="floatingInput" placeholder="Tên của bạnbạn">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="floatingInput2" class="form-label fw-bold">Email
-                                            </label>
-                                            <input type="email" class="form-control form-control-th"
-                                                id="floatingInput2" placeholder="Email">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="floatingPassword" class="form-label fw-bold">Mật khẩu</label>
-                                            <input type="password" class="form-control form-control-th"
-                                                id="floatingPassword" placeholder="Mật khẩu">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="floatingPassword2" class="form-label fw-bold">Xác nhận mật
-                                                khẩu</label>
-                                            <input type="password" class="form-control form-control-th"
-                                                id="floatingPassword2" placeholder="Xác nhập mật khẩu">
-                                        </div>
-                                        <div class="mb-0 d-flex">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                            <label class="form-check-label font-small w-75" for="exampleCheck2">By
-                                                clicking
-                                                on register, I Understand &amp; agree to world travel <a
-                                                    href="#">Terms and
-                                                    condition</a>
-                                                and <a href="#">Privacy Policy</a></label>
-                                        </div>
-                                        <div class="mb-3 mt-3 d-flex align-items-center">
-                                            <button type="submit"
-                                                class="btn custom-btn-primary fw-bold button-effect transition-3d-hover px-4"
-                                                onclick="window.location.href='#';">Register</button>
-                                            <span class="font-small">
-                                                <span class="mx-3">Already a member?</span>
-                                                <a href="javascript:void(0)" class="log-btn">Login</a>
-                                            </span>
-                                        </div>
-                                    </form>
+
+                            <!-- Thông Tin Liên Hệ -->
+                            <div class="col-md-6">
+                                <div class="custom-contact-info">
+                                    <h4 class="text-center">Thông Tin Liên Hệ</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường Nguyễn Văn Linh, Quận 7, TPHCM
+                                    </p>
+                                    <p><i class="fas fa-phone-alt"></i> (028) 3123 4567</p>
+                                    <p><i class="fas fa-mobile-alt"></i> 090 123 4567</p>
+                                    <p><i class="fas fa-envelope"></i> info@website.com</p>
+                                    <p><i class="fas fa-clock"></i> Thứ 2 - Thứ 6: 8:00 - 17:30</p>
+
+                                    <div class="custom-contact-divider"></div>
+
+                                    <h5 class="text-center mt-4" style="color: #e40202;">Kết nối với chúng tôi</h5>
+                                    <div class="custom-social-links">
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

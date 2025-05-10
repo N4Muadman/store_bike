@@ -23,7 +23,7 @@
     <!-- shop details - horizontal view section -->
     <div class="my-5 shop-layout">
         <div class="container">
-            <div class="row">
+            <div class="row p-5">
                 <div class="col-lg-6">
                     <!-- product gallery -->
                     <div class="product-gallery">
@@ -31,14 +31,14 @@
                             @foreach ($product->images as $image)
                                 <div class="zoom" onmousemove="zoom(event)"
                                     style="background-image: url({{ $image->image_path }})">
-                                    <img src="{{ $image->image_path }}" alt="Cycling">
+                                    <img src="{{ $image->image_path }}" alt="Cycling" style="max-height: 400px">
                                 </div>
                             @endforeach
                         </div>
                         <div class="slider slider-nav gallery-thumb">
                             @foreach ($product->images as $image)
                                 <div>
-                                    <img src="{{ $image->image_path }}" alt="Cycling store">
+                                    <img src="{{ $image->image_path }}" alt="Cycling store" style="max-height: 125px">
                                 </div>
                             @endforeach
                         </div>
@@ -47,7 +47,6 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="ps-lg-2 mt-6 mt-lg-0">
-
                         <form class="form-add-to-cart" method="POST">
                             <input type="text" name="product_id" hidden value="{{ $product->id }}">
                             {{-- <a href="#!" class="mb-3 d-block mt-3 mt-lg-0">Outdoor Products</a> --}}
@@ -66,36 +65,54 @@
                                 </small>
                                 <a href="#" class="ms-2">({{ $product->reviews->count() }} Đánh giá)</a>
                             </div>
-                            <div class="fs-4">
-                                <span
-                                    class="fw-bold text-dark">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
-                                    đ</span>
-                                <span
-                                    class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}</span>
-                            </div>
-                            <hr class="my-6">
-                            <div>
-                                <!-- input -->
-                                <!-- input -->
-                                <div class="input-group input-spinner">
-                                    <span class="button-minus btn btn-sm">-</span>
-                                    <input type="text" value="1" class="quantity-field form-control-sm form-input">
-                                    <span class="button-plus btn btn-sm">+</span>
+                            @if ($product->price > 0)
+                                <div class="fs-4">
+                                    <span
+                                        class="fw-bold text-dark">{{ $product->has_sale ? number_format($product->sale_price) : number_format($product->price) }}
+                                        đ</span>
+                                    <span
+                                        class="text-decoration-line-through text-muted">{{ $product->has_sale ? number_format($product->price) . ' đ' : '' }}</span>
                                 </div>
-                            </div>
-                            <div class="mt-0 mt-lg-3 row justify-content-start g-2 align-items-center">
-                                <div class="col-6">
-                                    <!-- button -->
-                                    <div class="custom-button">
-                                        <button type="submit"
-                                            class="custom-btn-secondary font-small button-effect justify-content-center align-items-center d-flex px-4 transition-3d-hover w-100">
-                                            <i class="bi bi-basket me-2"></i>Thêm vào giỏ
-                                        </button>
+                                <hr class="my-6">
+                                <div>
+                                    <!-- input -->
+                                    <!-- input -->
+                                    <div class="input-group input-spinner">
+                                        <span class="button-minus btn btn-sm">-</span>
+                                        <input type="text" value="1"
+                                            class="quantity-field form-control-sm form-input">
+                                        <span class="button-plus btn btn-sm">+</span>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="mt-0 mt-lg-3 row justify-content-start g-2 align-items-center">
+                                    <div class="col-6">
+                                        <!-- button -->
+                                        <div class="custom-button">
+                                            <button type="submit"
+                                                class="custom-btn-secondary font-small button-effect justify-content-center align-items-center d-flex px-4 transition-3d-hover w-100">
+                                                <i class="bi bi-basket me-2"></i>Thêm vào giỏ
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <p class="fs-3">Giá: <a class="text">Liên hệ</a></p>
+                                <hr class="my-6">
+                                <div class="mt-0 mt-lg-3 row justify-content-start g-2 align-items-center">
+                                    <div class="col-6">
+                                        <!-- button -->
+                                        <div class="custom-button">
+                                            <a data-bs-toggle="modal" data-bs-target="#contactModal"
+                                                class="btn custom-demo-btn m-0">
+                                                <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
                             <div class="my-3">
-                                {!! $product->short_description!!}
+                                {!! $product->short_description !!}
                             </div>
                             <hr class="my-6">
                             <div>
@@ -1323,8 +1340,7 @@
                     s.classList.add('active');
                 }
             });
-            
+
         });
-        
     </script>
 @endsection
