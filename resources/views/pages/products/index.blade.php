@@ -2,6 +2,7 @@
 @section('title', 'Tất cả sản phẩm')
 
 @section('content')
+    <h1 class="visually-hidden">Tất Cả Sản Phẩm Xe Đạp Nhật Bãi Tại Xe Nhật</h1>
     <div class="py-5 theme-bg-accent-three">
         <div class="container">
             <!-- row -->

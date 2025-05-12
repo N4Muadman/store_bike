@@ -151,10 +151,11 @@
         <div class="container">
             <div class="row animate__animated wow animate__backInUp">
                 <div class="col-12 col-md-12 col-lg-3 position-relative">
-                    <h3 class="fs-2 fw-bold mb-3 mt-4 mt-md-4 mt-lg-5">Về [Tên Website/Cửa Hàng]</h3>
+                    <h3 class="fs-2 fw-bold mb-3 mt-4 mt-md-4 mt-lg-5">Về Xe Nhật</h3>
                     <div class="d-flex">
                         <p class="theme-text-accent-one">
-                            [Tên website/cửa hàng] là điểm đến lý tưởng cho những người yêu xe đạp. Chúng tôi cung cấp
+                            Xe Nhật - Chuyên xe đạp nhật bãi là điểm đến lý tưởng cho những người yêu xe đạp. Chúng tôi
+                            cung cấp
                             đa dạng các dòng xe, phụ kiện chính hãng và luôn sẵn sàng hỗ trợ bạn trên mọi nẻo đường.
                         </p>
                     </div>
@@ -166,35 +167,24 @@
                                 <div class="col-12 col-md-6">
                                     <h3 class="fs-2 fw-bold mb-4 mt-4 mt-lg-5">Thông Tin</h3>
                                     <ul class="footer-link">
-                                        <li><i class="bi bi-chevron-double-right"></i><a
-                                                href="/dieu-khoan-va-dieu-kien">Điều Khoản & Điều Kiện</a></li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a
-                                                href="/chinh-sach-bao-mat">Chính Sách Bảo Mật</a></li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a href="/lien-he">Liên Hệ</a>
-                                        </li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a href="/tro-giup">Trợ Giúp</a>
-                                        </li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a
-                                                href="/cau-hoi-thuong-gap">Các Câu Hỏi Thường Gặp</a></li>
+                                        
+                                        <li><i class="bi bi-chevron-double-right"></i><a href="{{route('contact')}}">Liên Hệ</a></li>
+                                        <li><i class="bi bi-chevron-double-right"></i><a href="{{route('blogs')}}">Tin tức</a></li>
+
                                     </ul>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <h3 class="fs-2 fw-bold mb-4 mt-4 mt-lg-5">Mua Sắm</h3>
                                     <ul class="footer-link">
-                                        <li><i class="bi bi-chevron-double-right"></i><a href="/san-pham-ban-chay">Sản
+                                        <li><i class="bi bi-chevron-double-right"></i><a
+                                                href="{{ route('product.index', ['sort' => 'purchases']) }}">Sản
                                                 Phẩm Bán Chạy</a></li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a href="/phieu-qua-tang">Phiếu
-                                                Quà Tặng</a></li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a href="/uu-dai-truc-tuyen">Ưu
-                                                Đãi Trực Tuyến</a></li>
                                         <li><i class="bi bi-chevron-double-right"></i><a
-                                                href="/huong-dan-chon-xe">Hướng Dẫn Chọn Xe</a></li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a href="/so-sanh-xe">So Sánh
-                                                Các Mẫu Xe</a></li>
+                                                href="{{ route('product.index', ['sort' => 'discount']) }}">Sản
+                                                Phẩm Giảm Giá</a></li>
                                         <li><i class="bi bi-chevron-double-right"></i><a
-                                                href="/chinh-sach-giao-hang">Chính Sách Giao Hàng</a></li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a
-                                                href="/chinh-sach-doi-tra">Chính Sách Đổi Trả</a></li>
+                                                href="{{ route('product.index', ['sort' => 'newest']) }}">Sản
+                                                Phẩm Mới Về</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -204,34 +194,39 @@
                 <div class="col-12 col-md-6 col-lg-4 custom position-relative">
                     <h3 class="fs-2 fw-bold mb-3 mt-4 mt-lg-5">Ưu Đãi Đặc Biệt</h3>
                     <p class="mt-0 mt-lg-4">
-                        Đừng bỏ lỡ những chương trình khuyến mãi hấp dẫn nhất từ [Tên website/cửa hàng]! Hãy đăng ký
-                        email của bạn để nhận thông tin về các ưu đãi độc quyền và các mẫu xe mới nhất.
+                        Hãy theo dõi Xe Nhật - Chuyên xe đạp nhật bãi để không bị bỏ lỡ những chương trình khuyến mãi
+                        hấp dẫn nhất !
                     </p>
-                    <form class="form-subcriber d-flex flex-column">
+                    {{-- <form class="form-subcriber d-flex flex-column">
                         <input type="email" placeholder="Địa chỉ email của bạn">
                         <div class="m-0">
                             <button class="btn custom-btn-primary font-small fw-bold button-effect"
                                 type="submit">Đăng Ký</button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
             <div class="row my-4 animate__animated wow animate__backInUp">
                 <div class="position-relative text-center">
                     <img src="/assets/images/logo.jpg" style="border-radius: 50%" width="100px" class="img-fluid"
-                        alt="Logo [Tên Website/Cửa Hàng]">
+                        alt="Logo Xe Nhật - Chuyên xe đạp nhật bãi">
                 </div>
                 <div class="d-flex flex-row flex-wrap justify-content-center align-items-center position-relative">
                     <ul class="inline-link">
                         <li>
                             <p class="text-center mb-0 theme-text-accent-one d-inline">Liên Kết Phổ Biến</p>
                         </li>
-                        <li><a href="{{route('product.index', ['category' => ['Xe Đạp Địa Hình']])}}">Xe Đạp Địa Hình</a></li>
-                        <li><a href="{{route('product.index', ['category' => ['Xe Đạp Đường Phố']])}}">Xe Đạp Đường Phố</a></li>
-                        <li><a href="{{route('product.index', ['category' => ['Xe Đạp Trẻ Em']])}}">Xe Đạp Trẻ Em</a></li>
-                        <li><a href="{{route('product.index', ['category' => ['Xe Đạp Điện']])}}">Xe Đạp Điện</a></li>
-                        <li><a href="{{route('product.index', ['category' => ['Phụ Kiện Xe Đạp']])}}">Phụ Kiện Xe Đạp</a></li>
-                        <li><a href="{{route('blogs')}}">Tin tức</a></li>
+                        <li><a href="{{ route('product.index', ['category' => ['Xe Đạp Địa Hình']]) }}">Xe Đạp Địa
+                                Hình</a></li>
+                        <li><a href="{{ route('product.index', ['category' => ['Xe Đạp Đường Phố']]) }}">Xe Đạp Đường
+                                Phố</a></li>
+                        <li><a href="{{ route('product.index', ['category' => ['Xe Đạp Trẻ Em']]) }}">Xe Đạp Trẻ
+                                Em</a></li>
+                        <li><a href="{{ route('product.index', ['category' => ['Xe Đạp Điện']]) }}">Xe Đạp Điện</a>
+                        </li>
+                        <li><a href="{{ route('product.index', ['category' => ['Phụ Kiện Xe Đạp']]) }}">Phụ Kiện Xe
+                                Đạp</a></li>
+                        <li><a href="{{ route('blogs') }}">Tin tức</a></li>
                         {{-- <li><a href="/tin-tuc/thuong-hieu-noi-tieng">Thương Hiệu Nổi Tiếng</a></li> --}}
                     </ul>
                 </div>
@@ -241,22 +236,22 @@
                     <div class="d-flex align-items-center mt-4 mt-lg-5">
                         <h3 class="fs-4 fw-bold mb-0">Mạng Xã Hội</h3>
                         <div class="d-flex social ms-5">
-                            <a href="[Link Facebook của bạn]" class="fs-4 pe-2"><i class="bi bi-facebook"></i></a>
-                            <a href="[Link Twitter của bạn]" class="fs-4 px-2"><i class="bi bi-twitter-x"></i></a>
-                            <a href="[Link Youtube của bạn]" class="fs-4 px-2"><i class="bi bi-youtube"></i></a>
-                            <a href="[Link Instagram của bạn]" class="fs-4 px-2"><i class="bi bi-instagram"></i></a>
+                            <a href="https://www.facebook.com/anhthuat.van" class="fs-4 pe-2"><i
+                                    class="bi bi-facebook"></i></a>
+                            <a href="https://zalo.me/0976717688" class="fs-4 px-2"></a>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-12 col-lg-6">
-                    <div class="d-flex align-items-center mt-4 mt-lg-5">
+                    {{-- <div class="d-flex align-items-center mt-4 mt-lg-5">
                         <h3 class="fs-4 fw-bold mb-0">Hình Thức Thanh Toán</h3>
                         <div class="ms-5">
                             <img src="/assets/images/icons/visa.png" class="img-fluid" alt="Visa">
                             <img src="/assets/images/icons/mastercard.png" class="img-fluid" alt="Mastercard">
                             <img src="/assets/images/icons/paypal.png" class="img-fluid" alt="PayPal">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -266,14 +261,15 @@
                     <div class="col-12">
                         <ul class="bottom-link d-flex flex-row flex-wrap justify-content-center align-items-center">
                             <li><a href="/">Trang Chủ</a></li>
-                            <li><a href="{{route('product.index')}}">Sản phẩm</a></li>
-                            <li><a href="{{route('blogs')}}">Tin tức</a></li>
-                            <li><a href="{{route('contact')}}">Liên Hệ</a></li>
+                            <li><a href="{{ route('product.index') }}">Sản phẩm</a></li>
+                            <li><a href="{{ route('blogs') }}">Tin tức</a></li>
+                            <li><a href="{{ route('contact') }}">Liên Hệ</a></li>
                             {{-- <li><a href="/huong-dan-mua-hang">Hướng Dẫn Mua Hàng</a></li> --}}
                         </ul>
                     </div>
                     <div class="col-12">
-                        <p class="mb-0 mt-3 font-small text-center">&copy; 2025 Bản quyền [Tên Website/Cửa Hàng], Mọi
+                        <p class="mb-0 mt-3 font-small text-center">&copy; 2025 Bản quyền Xe Nhật - Chuyên xe đạp nhật
+                            bãi, Mọi
                             quyền được bảo lưu. Với Yêu Thương <i class="bi bi-heart-fill"></i> bởi
                             <a href="https://www.templatemonster.com/authors/themeslay/">Idai.vn</a>
                         </p>
@@ -323,7 +319,7 @@
                     <!-- btn -->
                     <div class="d-flex flex-column custom-button">
                         <p class="mb-2">Phí vận chuyển và mã giảm giá được tính khi thanh toán.</p>
-                        <a href="{{route('checkout')}}"
+                        <a href="{{ route('checkout') }}"
                             class="d-flex align-items-center custom-btn-primary button-effect w-100 text-uppercase">Thanh
                             toán</a>
                     </div>
@@ -359,10 +355,12 @@
                         <div class="row">
                             <!-- Form Liên Hệ -->
                             <div class="col-md-6">
-                                <form class="custom-contact-form" action="{{route('contacts.store')}}" method="POST">
+                                <form class="custom-contact-form" action="{{ route('contacts.store') }}"
+                                    method="POST">
                                     @csrf
                                     <h4 class="mb-4 text-center" style="color: #e40202;">Gửi Thông Tin</h4>
-                                    <input type="hidden" name="product_id" value="" id="product_id_form_contact">
+                                    <input type="hidden" name="product_id" value=""
+                                        id="product_id_form_contact">
                                     <div class="mb-3">
                                         <input type="text" class="form-control" id="contact_name"
                                             placeholder="Họ và tên" required name="name">
@@ -375,9 +373,10 @@
                                         <input type="tel" class="form-control" id="contact_phone"
                                             placeholder="Số điện thoại" name="phone">
                                     </div>
-                                    
+
                                     <div class="mb-3">
-                                        <textarea class="form-control" name="message" id="contact_message" rows="4" placeholder="Nội dung tin nhắn" required></textarea>
+                                        <textarea class="form-control" name="message" id="contact_message" rows="4" placeholder="Nội dung tin nhắn"
+                                            required></textarea>
                                     </div>
                                     <button type="submit" class="btn custom-btn-submit w-100">GỬI THÔNG TIN</button>
                                 </form>
@@ -387,22 +386,21 @@
                             <div class="col-md-6">
                                 <div class="custom-contact-info">
                                     <h4 class="text-center">Thông Tin Liên Hệ</h4>
-                                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường Nguyễn Văn Linh, Quận 7, TPHCM
+                                    <p><i class="fas fa-map-marker-alt"></i> Chợ gỗ, Thăng Bình, Nông Cống, Thanh Hóa
                                     </p>
-                                    
+
                                     <p><i class="fas fa-mobile-alt"></i> 0976.717.688</p>
-                                    <p><i class="fas fa-envelope"></i> info@website.com</p>
-                                    <p><i class="fas fa-clock"></i> Thứ 2 - Thứ 6: 8:00 - 17:30</p>
+                                    <p><i class="fas fa-envelope"></i> ai@idai.vn</p>
 
                                     <div class="custom-contact-divider"></div>
 
                                     <h5 class="text-center mt-4" style="color: #e40202;">Kết nối với chúng tôi</h5>
                                     <div class="custom-social-links">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                        <a href="https://www.facebook.com/anhthuat.van">
+                                            <i class="bi bi-facebook fs-3 ms-2" style="color: blue"></i></a>
+                                        <a target="_blank" class="icon-zalo" href="https://zalo.me/0976717688">
+                                            <img alt="Zalo" src="/assets/images/about/zalo.png" width="16px">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -787,7 +785,7 @@
 
         function setProductIdFormContact() {
             document.querySelectorAll('.btn-contact').forEach((element) => {
-                element.addEventListener('click', () =>  {
+                element.addEventListener('click', () => {
                     document.getElementById('product_id_form_contact').value = element.dataset.id;
                 });
             });

@@ -4553,16 +4553,17 @@ div.zoom img:hover {
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
+  align-items: center;
 }
 
-.custom-social-links a {
+.icon-zalo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e40202 0%, #f48e8e 100%);
+  background: linear-gradient(135deg, #02a0e4 0%, rgb(142, 213, 244) 100%);
   color: white;
   margin: 0 0.5rem;
   transition: all 0.3s;
@@ -4785,4 +4786,11 @@ div.zoom img:hover {
     -moz-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%)
+}
+.visually-hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }

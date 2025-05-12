@@ -1,8 +1,10 @@
 @extends('layout')
 
-@section('title', 'Trang chủ')
+@section('title', 'Xe Nhật - Chuyên xe đạp nhật bãi')
 
 @section('content')
+
+<h1 class="visually-hidden">Xe Nhật - Chuyên Xe Đạp Nhật Bãi Uy Tín, Giá Tốt</h1>
     <section class="hero">
         <div class="carouselhero">
             <div class="slider-item set-bg" data-setbg="/assets/images/slider/banner.jpg">
@@ -27,23 +29,6 @@
             </div>
             <!-- repetable item -->
             <div class="slider-item set-bg" data-setbg="/assets/images/slider/slider05.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 text-start position-relative">
-                            <p class="fs-3 mb-0 theme-text-primary text-uppercase animate__animated"
-                                data-animation-in="animate__fadeInDown" data-delay-in=".1s">New Gear Offer end Sesion
-                                Sale</p>
-                            <h1 class="display-1 font-black text-uppercase mb-4 animate__animated"
-                                data-animation-in="animate__fadeInDown" data-delay-in=".2s">50% Off</h1>
-                            <div class="group mt-5 custom-button justify-content-start animate__animated"
-                                data-animation-in="animate__fadeInDown" data-delay-in=".3s">
-                                <button class="btn custom-btn-primary fw-bold button-effect transition-3d-hover px-4"
-                                    type="submit">Shop
-                                    Product</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- repetable item -->
         </div>
@@ -59,10 +44,10 @@
                             <div class="product set-bg" data-setbg="/assets/images/product/product-banner01.png"></div>
                         </div>
                         <div class="content">
-                            <h1 class="mb-0 theme-text-primary fw-bold">Chuẩn bị tựu trường</h1>
+                            <h2 class="mb-0 theme-text-primary fw-bold">Chuẩn bị tựu trường</h2>
                             <p class="my-0 fs-6">Giảm giá 50% trong mùa này</p>
                             <div class="custom-button mt-4">
-                                <a href="{{ route('product.index') }}"
+                                <a href="{{ route('product.index', ['sort' => 'discount']) }}"
                                     class="custom-btn-secondary btn-shop font-small px-4 button-effect">
                                     Mua ngay
                                     <i class="bi bi-arrow-right fs-6 ms-2"></i>
@@ -78,10 +63,10 @@
                             <div class="product set-bg" data-setbg="/assets/images/product/product-banner02.png"></div>
                         </div>
                         <div class="content">
-                            <h1 class="mb-0 theme-text-primary fw-bold">Giá cả phải chăng</h1>
+                            <h2 class="mb-0 theme-text-primary fw-bold">Giá cả phải chăng</h2>
                             <p class="my-0 fs-6">Chỉ từ 2.000.000 đ</p>
                             <div class="custom-button mt-4">
-                                <a href="{{ route('product.index') }}"
+                                <a href="{{ route('product.index', ['price_min' => '2000000']) }}"
                                     class="custom-btn-secondary btn-shop font-small px-4 button-effect">
                                     Mua ngay
                                     <i class="bi bi-arrow-right fs-6 ms-2"></i>
@@ -148,7 +133,8 @@
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn quick-view"data-id="{{ $product->id }}">
+                                                        <a href="#!"
+                                                            class="view-btn quick-view"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
@@ -160,7 +146,9 @@
                                                             </button>
                                                         @else
                                                             <a href="#!" data-bs-toggle="modal"
-                                                                data-bs-target="#contactModal" class="view-btn btn-contact" data-id="{{$product->id}}">
+                                                                data-bs-target="#contactModal"
+                                                                class="view-btn btn-contact"
+                                                                data-id="{{ $product->id }}">
                                                                 <i class="bi bi-telephone-outbound"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     data-bs-title="Liên hệ"></i>
@@ -216,7 +204,8 @@
                                                             class="d-flex justify-content-between align-items-center flex-column">
 
                                                             <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                                class="btn custom-demo-btn w-100 m-0 btn-contact" data-id="{{$product->id}}">
+                                                                class="btn custom-demo-btn w-100 m-0 btn-contact"
+                                                                data-id="{{ $product->id }}">
                                                                 <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                                             </a>
                                                         </div>
@@ -255,7 +244,8 @@
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn quick-view"data-id="{{ $product->id }}">
+                                                        <a href="#!"
+                                                            class="view-btn quick-view"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
@@ -267,7 +257,9 @@
                                                             </button>
                                                         @else
                                                             <a href="#!" data-bs-toggle="modal"
-                                                                data-bs-target="#contactModal" class="view-btn btn-contact" data-id="{{$product->id}}">
+                                                                data-bs-target="#contactModal"
+                                                                class="view-btn btn-contact"
+                                                                data-id="{{ $product->id }}">
                                                                 <i class="bi bi-telephone-outbound"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     data-bs-title="Liên hệ"></i>
@@ -323,7 +315,8 @@
                                                             class="d-flex justify-content-between align-items-center flex-column">
 
                                                             <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                                class="btn custom-demo-btn w-100 m-0 btn-contact" data-id="{{$product->id}}">
+                                                                class="btn custom-demo-btn w-100 m-0 btn-contact"
+                                                                data-id="{{ $product->id }}">
                                                                 <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                                             </a>
                                                         </div>
@@ -339,7 +332,7 @@
                             <div class="row">
                                 <div class="col-12 text-center mt-4 animate__animated wow animate__backInUp">
                                     <div class="custom-button">
-                                        <a href="{{ route('product.index') }}" class="fw-bold link-ef">
+                                        <a href="{{ route('product.index', ['sort' => 'purchases']) }}" class="fw-bold link-ef">
                                             Xem thêm sản phẩm<i class="bi bi-arrow-right ps-2"></i></a>
                                     </div>
                                 </div>
@@ -361,7 +354,8 @@
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn quick-view"data-id="{{ $product->id }}">
+                                                        <a href="#!"
+                                                            class="view-btn quick-view"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
@@ -373,7 +367,9 @@
                                                             </button>
                                                         @else
                                                             <a href="#!" data-bs-toggle="modal"
-                                                                data-bs-target="#contactModal" class="view-btn btn-contact" data-id="{{$product->id}}">
+                                                                data-bs-target="#contactModal"
+                                                                class="view-btn btn-contact"
+                                                                data-id="{{ $product->id }}">
                                                                 <i class="bi bi-telephone-outbound"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     data-bs-title="Liên hệ"></i>
@@ -429,7 +425,8 @@
                                                             class="d-flex justify-content-between align-items-center flex-column">
 
                                                             <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                                class="btn custom-demo-btn w-100 m-0 btn-contact" data-id="{{$product->id}}">
+                                                                class="btn custom-demo-btn w-100 m-0 btn-contact"
+                                                                data-id="{{ $product->id }}">
                                                                 <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                                             </a>
                                                         </div>
@@ -445,7 +442,7 @@
                             <div class="row">
                                 <div class="col-12 text-center mt-4 animate__animated wow animate__backInUp">
                                     <div class="custom-button">
-                                        <a href="{{ route('product.index') }}" class="fw-bold link-ef">
+                                        <a href="{{ route('product.index', ['sort' => 'discount']) }}" class="fw-bold link-ef">
                                             Xem thêm sản phẩm<i class="bi bi-arrow-right ps-2"></i></a>
                                     </div>
                                 </div>
@@ -522,16 +519,28 @@
                                         <i class="bi bi-check2-circle fs-2 theme-text-secondary"></i>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
-                                        <p class="mb-0 theme-text-accent-one">Thông tin liên hệ</p>
+                                        <p class="mb-0 theme-text-accent-one">
+                                             0976.717.688
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="bi bi-check2-circle fs-2 theme-text-secondary"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <p class="mb-0 theme-text-accent-one">
+                                             ai@idai.com
+                                        </p>
                                     </div>
                                 </div>
                             </li>
                             <!-- repetable -->
                         </ul>
                         <div class=" custom-button justify-content-start animate__animated wow animate__backInUp">
-                            <a href="{{ route('aboutUs') }}"
+                            <a href="{{ route('contact') }}"
                                 class="btn custom-btn-secondary theme-border fw-bold button-effect px-5">
-                                Khám phá ngay</a>
+                                Liên hệ ngay</a>
                         </div>
                     </div>
                 </div>
@@ -545,11 +554,13 @@
                 <div class="col-12 position-relative justify-content-center align-self-center text-center">
                     <div class="mb-5">
                         <div class="max">
-                            <h4 class="display-4 fw-bold theme-text-primary mb-3">Video giới thiệu sản phẩm, hoặc các video
-                                khác
+                            <h4 class="display-4 fw-bold theme-text-primary mb-3">
+                                GIỚI THIỆU VÀ BÁO GIÁ XE ĐẠP NHẬT BÃI
                             </h4>
                         </div>
-                        <p class="fs-5 mb-0">Mô tả giới thiệu video</p>
+                        <p class="fs-5 mb-0">Bạn đang tìm kiếm một chiếc xe đạp Nhật bãi chất lượng với giá cực kỳ hợp lý?
+                            Đừng bỏ qua video này! Chúng tôi sẽ giới thiệu những mẫu xe đạp nhập khẩu Nhật Bản với tình
+                            trạng còn rất tốt, kèm theo báo giá chi tiết.</p>
                     </div>
                 </div>
             </div>
@@ -560,7 +571,7 @@
                     <div class="col-12 col-lg-10 offset-lg-1">
                         <div class="group custom-button">
                             <div class="d-flex align-items-center position-relative">
-                                <a href="https://www.youtube.com/watch?v=_0Yfkq1eysE"
+                                <a href="https://www.youtube.com/watch?v=pHnpH1Ru_WY"
                                     class="video-icon video-icon2 video_model">
                                     <i class="bi bi-play"></i>
                                 </a>

@@ -69,6 +69,13 @@ class ProductController extends Controller
             case 'newest':
                 $query->orderBy('created_at', 'desc');
                 break;
+            case 'purchases':
+                $query->orderBy('total_purchases', 'desc');
+                break;
+            case 'discount':
+                $query->where('sale_price', '>', 0)->orderBy('created_at', 'desc');
+                break;
+                
             default:
                 $query->latest();
         }

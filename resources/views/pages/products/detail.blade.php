@@ -103,7 +103,7 @@
                                         <!-- button -->
                                         <div class="custom-button">
                                             <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                class="btn custom-demo-btn m-0 btn-contact" data-id="{{$product->id}}">
+                                                class="btn custom-demo-btn m-0 btn-contact" data-id="{{ $product->id }}">
                                                 <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                             </a>
                                         </div>
@@ -193,12 +193,14 @@
                         <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel"
                             aria-labelledby="product-tab" tabindex="0">
                             <div class="my-5">
+                                <h2 class="fs-3 mb-3">Mô tả sản phẩm</h2>
                                 {!! $product->description !!}
                             </div>
                         </div>
                         <!-- tab pane -->
                         <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
                             tabindex="0">
+                            <h2 class="fs-3 mb-3">Chính sách vận chuyển</h2>
                             <p class="mb-2">Please refer our Returns Policy.</p>
                         </div>
                     </div>

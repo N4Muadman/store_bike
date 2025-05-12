@@ -21,19 +21,19 @@ use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
 
 Route::get('/', [PagesController::class, 'home'])->name('home');
-Route::get('ve-chung-toi', [PagesController::class, 'aboutUs'])->name('aboutUs');
-Route::get('faqs', [PagesController::class, 'faqs'])->name('faqs');
-Route::get('dich-vu-cua-chung-toi', [PagesController::class, 'ourService'])->name('ourService');
 
 Route::get('lien-he', [PagesController::class, 'contact'])->name('contact');
 Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
 
-Route::get('chinh-sach-bao-hanh', [PagesController::class, 'warrantyPolicy'])->name('warrantyPolicy');
-Route::get('chinh-sach-giao-hang', [PagesController::class, 'shippingPolicy'])->name('shippingPolicy');
-Route::get('chinh-sach-bao-mat', [PagesController::class, 'privacyPolicy'])->name('privacyPolicy');
-Route::get('dieu-khoan-dieu-kien', [PagesController::class, 'termsConditions'])->name('termsConditions');
-Route::get('cam-ket-gia-ca', [PagesController::class, 'priceCommitment'])->name('priceCommitment');
-Route::get('phan-hoi-khach-hang', [PagesController::class, 'feedbackService'])->name('feedbackService');
+// Route::get('ve-chung-toi', [PagesController::class, 'aboutUs'])->name('aboutUs');
+// Route::get('faqs', [PagesController::class, 'faqs'])->name('faqs');
+// Route::get('dich-vu-cua-chung-toi', [PagesController::class, 'ourService'])->name('ourService');
+// Route::get('chinh-sach-bao-hanh', [PagesController::class, 'warrantyPolicy'])->name('warrantyPolicy');
+// Route::get('chinh-sach-giao-hang', [PagesController::class, 'shippingPolicy'])->name('shippingPolicy');
+// Route::get('chinh-sach-bao-mat', [PagesController::class, 'privacyPolicy'])->name('privacyPolicy');
+// Route::get('dieu-khoan-dieu-kien', [PagesController::class, 'termsConditions'])->name('termsConditions');
+// Route::get('cam-ket-gia-ca', [PagesController::class, 'priceCommitment'])->name('priceCommitment');
+// Route::get('phan-hoi-khach-hang', [PagesController::class, 'feedbackService'])->name('feedbackService');
 
 Route::get('san-pham', [ProductController::class, 'index'])->name('product.index');
 Route::get('quick-view/{id}', [ProductController::class, 'quickView'])->name('quick-view');
