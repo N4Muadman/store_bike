@@ -24,8 +24,6 @@ Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('ve-chung-toi', [PagesController::class, 'aboutUs'])->name('aboutUs');
 Route::get('faqs', [PagesController::class, 'faqs'])->name('faqs');
 Route::get('dich-vu-cua-chung-toi', [PagesController::class, 'ourService'])->name('ourService');
-Route::get('uu-dai-hot', [PagesController::class, 'hotDeal'])->name('hotDeal');
-Route::get('khuyen-mai', [PagesController::class, 'promotion'])->name('promotion');
 
 Route::get('lien-he', [PagesController::class, 'contact'])->name('contact');
 Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');

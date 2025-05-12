@@ -28,65 +28,6 @@ class PagesController extends Controller
         return view('pages.home', compact('categories','products' ,'saleProducts', 'bestSellingProducts'));
     }
 
-    public function hotDeal(Request $request)
-    {
-        $productQuery = Product::with('reviews', 'images', 'category')
-            ->select('*')
-            ->selectRaw('
-            (
-                (total_purchases * 2 + view_count) / GREATEST(stock_quantity, 1)
-                * CASE
-                    WHEN sale_price > 0 THEN price / sale_price
-                    ELSE 1
-                END
-            ) as hot_score
-        ');
-        $categoryQuery = Category::with('products');
-        if ($request->category_l1) {
-            $productQuery->whereHas('category.categoryParent', function ($query) use ($request) {
-                $query->where('name', $request->category_l1);
-            });
-        }
-        if ($request->category) {
-            $productQuery->whereHas('category', function ($query) use ($request) {
-                $query->where('name', $request->category);
-            });
-        }
-        if ($request->search) {
-            $productQuery->where('name', 'like', '%' . $request->search . '%');
-        }
-        $products = $productQuery
-            ->having('hot_score', '>=', 20)
-            ->orderByDesc('hot_score')
-            ->paginate(10);
-
-        $categories = $categoryQuery->orderBy('name')->get();
-        return view('pages.hot-deal', compact('products', 'categories'));
-    }
-
-    public function promotion(Request $request)
-    {
-        $productQuery = Product::with('reviews', 'images', 'category')->where('sale_price', '>', 0);
-        $categoryQuery = Category::with('products');
-        if ($request->category_l1) {
-            $productQuery->whereHas('category.categoryParent', function ($query) use ($request) {
-                $query->where('name', $request->category_l1);
-            });
-        }
-        if ($request->category) {
-            $productQuery->whereHas('category', function ($query) use ($request) {
-                $query->where('name', $request->category);
-            });
-        }
-        if ($request->search) {
-            $productQuery->where('name', 'like', '%' . $request->search . '%');
-        }
-
-        $products = $productQuery->orderBy('created_at', 'desc')->paginate(14);
-        $categories = $categoryQuery->orderBy('name')->get();
-        return view('pages.promotion', compact('products', 'categories'));
-    }
-
     public function news()
     {
         return view('pages.news');

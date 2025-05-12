@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row mb-5 align-items-center">
         <div class="col-12 col-md-12 text-center mb-5">
-          <p class="fs-2 text-center theme-text-primary mb-0 max-1">Liên hệ với chúng tôi</p>
+          <h1 class="fs-2 text-center theme-text-primary mb-0 max-1">Liên hệ với chúng tôi</h1>
         </div>
         <div class="col-12 col-lg-4 mb-3 mb-md-0">
           <div class="d-flex flex-column align-items-center text-center border p-4 mb-4">
