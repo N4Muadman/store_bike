@@ -3,298 +3,311 @@
 @section('title', 'Thanh toán')
 
 @section('content')
-    <section class="breadcrumb-section pt-0">
-        <div class="container-fluid-lg">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb-contain">
-                        <h2>Thanh Toán</h2>
-                        <nav>
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item">
-                                    <a href="index.html">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item active">Thanh Toán</li>
-                            </ol>
-                        </nav>
+
+    <div class="py-5 theme-bg-accent-three">
+        <div class="container">
+            <!-- row -->
+            <div class="row ">
+                <!-- col -->
+                <div class="col-12 align-self-center">
+                    <!-- breadcrumb -->
+                    <div class="page-breadcrumb">
+                        <ul class="list">
+                            <li><a href="/">Trang chủ</a></li>
+                            <li>Thanh toán</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-
-    <!-- Checkout section Start -->
-    <section class="checkout-section-2 section-b-space">
-        <div class="container-fluid-lg">
+    </div>
+    <!-- shop section - checkout cart -->
+    <div class="py-5">
+        <div class="container">
             <form action="{{ route('placeOrder') }}" method="post">
                 @csrf
-                <div class="row g-sm-4 g-3">
-                    <div class="col-lg-8">
-                        <div class="left-sidebar-checkout">
-                            <div class="checkout-detail-box">
-                                <ul>
-                                    <li>
-                                        <div class="checkout-icon">
-                                            <lord-icon target=".nav-item" src="https://cdn.lordicon.com/ggihhudh.json"
-                                                trigger="loop-on-hover"
-                                                colors="primary:#121331,secondary:#646e78,tertiary:#0baf9a" class="lord-icon">
-                                            </lord-icon>
+                <div class="row">
+                    <!-- shop checkout section -->
+                    <div class="col-lg-7 mb-6 mb-md-0">
+                        <div class="d-flex flex-column mb-4">
+                            <!-- title section -->
+                            <div class="d-flex justify-content-between border-bottom pb-4">
+                                <span class="fs-4 fw-bold">Thông tin khách hàng</span>
+                            </div>
+                            <!-- manage address section -->
+                            <div class="d-flex flex-column justify-content-between">
+                                <div class="pt-4">
+                                    <div class="row g-3">
+                                        <div class="col-12 col-lg-6">
+                                            <input type="text" class="form-control min-h" placeholder="Họ và tên"
+                                                aria-label="name" required="" name="full_name" value="{{old('full_name')}}">
                                         </div>
-                                        <div class="checkout-box">
-                                            <div class="checkout-title">
-                                                <h4>Địa chỉ giao hàng</h4>
-                                            </div>
-                                            <div id="billing-form" class="billing-form">
-                                                <div class="row">
-        
-                                                    <div class="col-md-6 col-12 mb-3">
-                                                        <label class="form-lable">Họ và tên <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" placeholder="Họ và tên" name="full_name" required>
-                                                    </div>
-        
-                                                    <div class="col-md-6 col-12 mb-3">
-                                                        <label class="form-lable">Email <span class="text-danger">*</span></label>
-                                                        <input type="email" class="form-control" placeholder="Email" name="email" required>
-                                                    </div>
-        
-                                                    <div class="col-md-6 col-12 mb-3">
-                                                        <label class="form-lable">Số điện thoại <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone_number" required>
-                                                    </div>
-                                                    <div class="col-md-6 col-12 mb-3">
-                                                        <label class="form-lable">Tỉnh / Thành phố <span class="text-danger">*</span></label>
-                                                        <select class="form-select" name="province" id="provinces" required>
-                                                            <option value="" data-id="">Chọn tỉnh / thành phố</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-6 col-12 mb-3">
-                                                        <label class="form-lable">Quận / huyện <span class="text-danger">*</span></label>
-                                                        <select class="form-select" name="district" id="districts" required>
-                                                            <option value="" data-id="">Chọn quận / huyện</option>
-                                                        </select>
-                                                    </div>
-        
-                                                    <div class="col-md-6 col-12 mb-3">
-                                                        <label class="form-lable">Phường / xã <span class="text-danger">*</span></label>
-                                                        <select class="form-select" name="ward" id="wards" required>
-                                                            <option value="" data-id="">Chọn phường / xã</option>
-                                                        </select>
-                                                    </div>
-        
-                                                    <div class="col-12 mb-3">
-                                                        <label class="form-lable">Địa chỉ <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" placeholder="Địa chỉ" name="address" required>
-                                                    </div>
-        
-                                                </div>
-        
-                                            </div>
-    
+                                        <div class="col-12 col-lg-6">
+                                            <input type="text" class="form-control min-h" placeholder="Số điện thoại"
+                                                aria-label="mobile" required="" name="phone_number" value="{{old('phone_number')}}">
                                         </div>
-                                    </li>
-    
-                                    <li>
-                                        <div class="checkout-icon">
-                                            <lord-icon target=".nav-item" src="https://cdn.lordicon.com/qmcsqnle.json"
-                                                trigger="loop-on-hover" colors="primary:#0baf9a,secondary:#0baf9a"
-                                                class="lord-icon">
-                                            </lord-icon>
+                                        <div class="col-12 col-lg-12">
+                                            <input type="email" class="form-control min-h" name="email" placeholder="Email"  value="{{old('Email')}}">
                                         </div>
-                                        <div class="checkout-box">
-                                            <div class="checkout-title">
-                                                <h4>Tùy chọn thanh toán</h4>
-                                            </div>
-    
-                                            <div class="checkout-detail">
-                                                <div class="accordion accordion-flush custom-accordion"
-                                                    id="accordionFlushExample">
-                                                    <div class="accordion-item">
-                                                        <div class="accordion-header" id="flush-headingFour">
-                                                            <div class="accordion-button collapsed" data-bs-toggle="collapse"
-                                                                data-bs-target="#flush-collapseFour">
-                                                                <div class="custom-form-check form-check mb-0">
-                                                                    <label class="form-check-label" for="cash"><input
-                                                                            class="form-check-input mt-0" type="radio"
-                                                                            name="payment_method" id="cash" value="cash" checked>
-                                                                        Thanh toán khi nhận hàng</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="flush-collapseFour" class="accordion-collapse collapse show"
-                                                            data-bs-parent="#accordionFlushExample">
-                                                            <div class="accordion-body">
-                                                                <p class="cod-review">
-                                                                    Được phép kiểm tra hàng trước khi nhận
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-    
-                                                    <div class="accordion-item">
-                                                        <div class="accordion-header" id="flush-headingOne">
-                                                            <div class="accordion-button collapsed" data-bs-toggle="collapse"
-                                                                data-bs-target="#flush-collapseOne">
-                                                                <div class="custom-form-check form-check mb-0">
-                                                                    <label class="form-check-label" for="credit"><input
-                                                                            class="form-check-input mt-0" type="radio"
-                                                                            name="payment_method" id="credit" value="vnpay">
-                                                                        Thanh toán bằng VNPay</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                                            data-bs-parent="#accordionFlushExample">
-                                                            <div class="accordion-body">
-                                                                <img src="/assets/images/payment/VNPAY.jpg" alt="ảnh vnpay">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+                                        <div class="col-12 col-lg-12">
+                                            <select class="form-select min-h" name="province" id="provinces" required>
+                                                <option value="" data-id="">Chọn tỉnh / thành phố
+                                                </option>
+                                            </select>
                                         </div>
-                                    </li>
-                                </ul>
+
+                                        <div class="col-12 col-lg-12">
+                                            <select class="form-select min-h" name="district" id="districts" required>
+                                                <option value="" data-id="">Chọn quận / huyện
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-lg-12">
+                                            <select class="form-select min-h" name="ward" id="wards" required>
+                                                <option value="" data-id="">Chọn phường / xã
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-lg-12">
+                                            <textarea class="form-control" id="exampleFormControlTextarea2" name="address" rows="3"
+                                                placeholder="Địa chỉ chi tiết"> {{old('address')}}</textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-    
-                    <div class="col-lg-4">
-                        <div class="right-side-summery-box">
-                            <div class="summery-box-2">
-                                <div class="summery-header">
-                                    <h3>Tóm tắt Đặt hàng</h3>
-                                </div>
-    
-                                <ul class="summery-contain">
-                                    @php
-                                        $total = 0;
-                                    @endphp
-                                    @foreach ($carts as $cart)
-                                        @php
-                                            $total += ($cart['sale_price'] > 0 ? $cart['sale_price'] : $cart['price']) * $cart['quantity'];
-                                        @endphp
-                                        <li>
-                                            <img src="{{ $cart['image'] }}"
-                                                class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                            <h4>{{ $cart['product_name'] }} <span>X {{ $cart['quantity'] }}</span></h4>
-                                            <h4 class="price"> {{ number_format($cart['sale_price'] > 0 ? $cart['sale_price'] : $cart['price']) }} đ</h4>
-                                        </li>
-                                    @endforeach
-                                </ul>
-    
-                                <ul class="summery-total">
-                                    <li>
-                                        <h4>Tổng phụ</h4>
-                                        <h4 class="price">{{ number_format($total) }} đ</h4>
-                                    </li>
-    
-                                    <li>
-                                        <h4>Vận chuyển</h4>
-                                        <h4 class="price">0 đ</h4>
-                                    </li>
-    
-                                    <li>
-                                        <h4>Phiếu giảm giá/Mã</h4>
-                                        <h4 class="price">0 đ</h4>
-                                    </li>
-    
-                                    <li class="list-total">
-                                        <h4>Tổng cộng (VND)</h4>
-                                        <h4 class="price">{{ number_format($total) }} đ</h4>
-                                    </li>
-                                </ul>
+                    <!-- product details section -->
+                    <div class="col-lg-5">
+                        <div class="d-flex flex-column order-detail mb-4">
+                            <!-- title section -->
+                            <div class="d-flex justify-content-between pb-3 border-bottom">
+                                <span class="fs-4 fw-bold">Chi tiết sản phẩm</span>
                             </div>
-    
-                            <button type="submit" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Đặt hàng</button>
+                            <!-- product items -->
+                            <div class="pb-3">
+                                @php
+                                    $total = 0;
+                                @endphp
+                                @foreach ($carts as $cart)
+                                    @php
+                                        $total +=
+                                            ($cart['sale_price'] > 0 ? $cart['sale_price'] : $cart['price']) *
+                                            $cart['quantity'];
+                                    @endphp
+
+                                    <div class="border-bottom pt-2">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{ $cart['image'] }}"
+                                                    class="img-fluid blur-up lazyloaded checkout-image"
+                                                    style="max-height: 70px" alt="">
+                                            </div>
+                                            <div class="col-9 col-md-5 col-lg-5">
+                                                <p class="mb-2 text">{{ $cart['product_name'] }}</p>
+                                            </div>
+                                            <div class="col-12 col-md-4 col-lg-4">
+                                                <div class="d-flex justify-content-end align-items-end">
+                                                    <div class="product-price mb-3 fw-bold">
+                                                        {{ $cart['quantity'] }} x
+                                                        <span
+                                                            class="ms-1">{{ number_format($cart['sale_price'] > 0 ? $cart['sale_price'] : $cart['price']) }}
+                                                            đ</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <!-- title section -->
+                            <div class="d-flex justify-content-between pb-3 border-bottom">
+                                <span class="fs-4 fw-bold">Chi tiết giá</span>
+                            </div>
+                            <!-- price details -->
+                            <div class="p-0">
+                                <div class="border-bottom pt-2">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-8">
+                                            <p class="mb-2">Tổng phụ</p>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="d-flex justify-content-end align-items-end">
+                                                <div class="product-price mb-2">
+                                                    <span class="ms-1">{{ number_format($total) }} đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- repetable -->
+                                <div class="border-bottom pt-2">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-8">
+                                            <p class="mb-2">Phiếu giảm giá</p>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="d-flex justify-content-end align-items-end">
+                                                <div class="product-price mb-2">
+                                                    <span class="ms-1">0 đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- repetable -->
+                                <div class="border-bottom pt-2">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-8">
+                                            <p class="mb-2">Phí vận chuyển</p>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="d-flex justify-content-end align-items-end">
+                                                <div class="product-price mb-2">
+                                                    <span class="ms-1"> 0đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-bottom pt-2">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-8">
+                                            <p class="mb-2 fw-bold text-uppercase">Tổng</p>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="d-flex justify-content-end align-items-end">
+                                                <div class="product-price mb-2 fw-bold text-uppercase">
+                                                    <span class="ms-1">{{ number_format($total) }} đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- repetable -->
+                            </div>
+                            <!-- payment option -->
+                            <div class="col my-4">
+                                <div class="form-pay">
+                                    <div class="pay-radio">
+                                        <label for="visa"><img src="assets/images/icons/payment-visa.png"
+                                                alt="payment">Thanh toán khi nhận hàng</label>
+                                        <input checked="" id="visa" value="cash" name="payment_method"
+                                            type="radio">
+                                    </div>
+
+                                    <div class="pay-radio">
+                                        <label for="paypal"><img src="assets/images/icons/payment-pay.png"
+                                                alt="payment">VnPay</label>
+                                        <input id="paypal" value="vnpay" name="payment_method" type="radio">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- button section -->
+                            <div class="col">
+                                {{-- <p class="mb-3">Your personal data will be used to process your order, support your
+                                experience
+                                throughout
+                                this website,
+                                and for other purposes described in our <a href="privacy.html">privacy policy</a>.</p> --}}
+                                <button type="submit"
+                                    class="btn custom-btn-primary w-100 fw-bold button-effect transition-3d-hover px-4">
+                                    Đặt hàng</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-    </section>
-
-
+    </div>
+    
     <script>
-    async function getProvinces(){
-        try{
-            const response = await fetch('https://provinces.open-api.vn/api/p/', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                }
-            });
-            const data = await response.json();
-            let provinceList = '<option value="" data-id="">Chọn tỉnh / thành phố</option>';
-            data.forEach(it => {
-                provinceList += `<option value="${it.name}" data-id="${it.code}">${it.name}</option>`;
-            });
-
-            document.getElementById('provinces').innerHTML = provinceList;
-        }catch(e){
-            console.log('error', e);
-        }
-    }
-    document.getElementById('provinces').addEventListener('change', async function(){
-        let selectedOption = this.options[this.selectedIndex];
-
-        let provinceId = selectedOption.getAttribute('data-id');
-        if (provinceId){
-            try{
-                const response = await fetch(`https://provinces.open-api.vn/api/p/${provinceId}?depth=2`, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const data = await response.json();
-
-
-                let districtList = '<option value="" data-id="">Chọn quận / huyện</option>';
-                data.districts.forEach(it => {
-                    districtList += `<option value="${it.name}" data-id="${it.code}">${it.name}</option>`;
-                });
-
-                document.getElementById('districts').innerHTML = districtList;
-            }catch(e){
-                console.log('error', e);
-            }
-        }
-
-    });
-
-    document.getElementById('districts').addEventListener('change', async function(){
-        let selectedOption = this.options[this.selectedIndex];
-
-        let provinceId = selectedOption.getAttribute('data-id');
-        if (provinceId){
-            try{
-                const response = await fetch(`https://provinces.open-api.vn/api/d/${provinceId}?depth=2`, {
+        async function getProvinces() {
+            try {
+                const response = await fetch('https://provinces.open-api.vn/api/p/', {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
                     }
                 });
                 const data = await response.json();
-
-                let wardList = '<option value="" data-id="">Chọn phường / xã</option>';
-                data.wards.forEach(it => {
-                    wardList += `<option value="${it.name}" data-id="${it.code}">${it.name}</option>`;
+                let provinceList = '<option value="" data-id="">Chọn tỉnh / thành phố</option>';
+                data.forEach(it => {
+                    provinceList += `<option value="${it.name}" data-id="${it.code}">${it.name}</option>`;
                 });
 
-                document.getElementById('wards').innerHTML = wardList;
-            }catch(e){
+                document.getElementById('provinces').innerHTML = provinceList;
+            } catch (e) {
                 console.log('error', e);
             }
         }
+        document.getElementById('provinces').addEventListener('change', async function() {
+            let selectedOption = this.options[this.selectedIndex];
 
-    });
-    getProvinces();
-</script>
+            let provinceId = selectedOption.getAttribute('data-id');
+            if (provinceId) {
+                try {
+                    const response = await fetch(`https://provinces.open-api.vn/api/p/${provinceId}?depth=2`, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    const data = await response.json();
+
+
+                    let districtList = '<option value="" data-id="">Chọn quận / huyện</option>';
+                    data.districts.forEach(it => {
+                        districtList +=
+                            `<option value="${it.name}" data-id="${it.code}">${it.name}</option>`;
+                    });
+
+                    document.getElementById('districts').innerHTML = districtList;
+                } catch (e) {
+                    console.log('error', e);
+                }
+            }
+
+        });
+
+        document.getElementById('districts').addEventListener('change', async function() {
+            let selectedOption = this.options[this.selectedIndex];
+
+            let provinceId = selectedOption.getAttribute('data-id');
+            if (provinceId) {
+                try {
+                    const response = await fetch(`https://provinces.open-api.vn/api/d/${provinceId}?depth=2`, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                        }
+                    });
+                    const data = await response.json();
+
+                    let wardList = '<option value="" data-id="">Chọn phường / xã</option>';
+                    data.wards.forEach(it => {
+                        wardList +=
+                            `<option value="${it.name}" data-id="${it.code}">${it.name}</option>`;
+                    });
+
+                    document.getElementById('wards').innerHTML = wardList;
+                } catch (e) {
+                    console.log('error', e);
+                }
+            }
+
+        });
+        getProvinces();
+    </script>
 @endsection

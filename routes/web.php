@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\RivewProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -21,11 +22,13 @@ use PhpParser\Node\Expr\FuncCall;
 
 Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('ve-chung-toi', [PagesController::class, 'aboutUs'])->name('aboutUs');
-Route::get('lien-he', [PagesController::class, 'contact'])->name('contact');
 Route::get('faqs', [PagesController::class, 'faqs'])->name('faqs');
 Route::get('dich-vu-cua-chung-toi', [PagesController::class, 'ourService'])->name('ourService');
 Route::get('uu-dai-hot', [PagesController::class, 'hotDeal'])->name('hotDeal');
 Route::get('khuyen-mai', [PagesController::class, 'promotion'])->name('promotion');
+
+Route::get('lien-he', [PagesController::class, 'contact'])->name('contact');
+Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
 
 Route::get('chinh-sach-bao-hanh', [PagesController::class, 'warrantyPolicy'])->name('warrantyPolicy');
 Route::get('chinh-sach-giao-hang', [PagesController::class, 'shippingPolicy'])->name('shippingPolicy');
@@ -50,21 +53,18 @@ Route::post('cart/decrease/{index}', [CartController::class, 'decrease'])->name(
 Route::post('cart/increase/{index}', [CartController::class, 'increase'])->name('increaseCart');
 Route::DELETE('delete-cart/{index}', [CartController::class, 'deleteCart'])->name('deleteCart');
 
-Route::middleware('auth')->group(function () {
-    Route::get('thanh-toan', [PaymentController::class, 'checkout'])->name('checkout');
-    Route::post('dat-hang', [PaymentController::class, 'placeOrder'])->name('placeOrder');
-    Route::get('payment-vnpay-return', [PaymentByVnpay::class, 'handlePaymentReturn'])->name('payment.vnpay.return');
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-});
-
+Route::get('thanh-toan', [PaymentController::class, 'checkout'])->name('checkout');
+Route::post('dat-hang', [PaymentController::class, 'placeOrder'])->name('placeOrder');
+Route::get('payment-vnpay-return', [PaymentByVnpay::class, 'handlePaymentReturn'])->name('payment.vnpay.return');
 
 Route::get('login', [AuthController::class, 'loginForm'])->name('login.form');
-Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'login'])->name('login.admin');
 
 Route::get('register', [AuthController::class, 'registerForm'])->name('register.form');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
-Route::middleware('is_admin')->prefix('admin')->group(function ()  {
+Route::middleware('is_admin')->prefix('admin')->group(function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('quan-ly-don-hang', [OrderController::class, 'index'])->name('order.index');
     Route::get('chi-tiet-don-hang/{id}', [OrderController::class, 'getOrderItem'])->name('order.getOrderItem');
@@ -82,4 +82,7 @@ Route::middleware('is_admin')->prefix('admin')->group(function ()  {
     Route::post('update-review/{id}', [RivewProductController::class, 'update'])->name('review.update');
     Route::delete('destroy-review/{id}', [RivewProductController::class, 'destroy'])->name('review.destroy');
     Route::post('approve-review/{id}', [RivewProductController::class, 'approve'])->name('review.approve');
+
+    Route::resource('lien-he-cua-khach-hang', ContactController::class)->except('store')->names('admin.contacts');
+    Route::put('lien-he-cua-khach-hang/{id}/seen', [ContactController::class, 'seen'])->name('admin.contacts.seen');
 });

@@ -5,13 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Color extends Model
+class Contact extends Model
 {
     use HasFactory;
-    protected $fillable = ['product_id', 'color_name', 'hex_code'];
 
-    public function product()
-    {
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'product_id',
+        'message',
+        'is_read'
+    ];
+
+    public function product() {
         return $this->belongsTo(Product::class);
     }
 }

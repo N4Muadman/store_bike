@@ -88,7 +88,7 @@
                                         <!-- button -->
                                         <div class="custom-button">
                                             <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                class="btn custom-demo-btn m-0">
+                                                class="btn custom-demo-btn m-0 btn-contact" data-id="{{$product->id}}">
                                                 <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                             </a>
                                         </div>

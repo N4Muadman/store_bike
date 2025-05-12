@@ -148,7 +148,7 @@
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn"data-id="{{ $product->id }}">
+                                                        <a href="#!" class="view-btn quick-view"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
@@ -160,7 +160,7 @@
                                                             </button>
                                                         @else
                                                             <a href="#!" data-bs-toggle="modal"
-                                                                data-bs-target="#contactModal" class="view-btn">
+                                                                data-bs-target="#contactModal" class="view-btn btn-contact" data-id="{{$product->id}}">
                                                                 <i class="bi bi-telephone-outbound"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     data-bs-title="Liên hệ"></i>
@@ -216,7 +216,7 @@
                                                             class="d-flex justify-content-between align-items-center flex-column">
 
                                                             <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                                class="btn custom-demo-btn w-100 m-0 ">
+                                                                class="btn custom-demo-btn w-100 m-0 btn-contact" data-id="{{$product->id}}">
                                                                 <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                                             </a>
                                                         </div>
@@ -255,7 +255,7 @@
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn"data-id="{{ $product->id }}">
+                                                        <a href="#!" class="view-btn quick-view"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
@@ -267,7 +267,7 @@
                                                             </button>
                                                         @else
                                                             <a href="#!" data-bs-toggle="modal"
-                                                                data-bs-target="#contactModal" class="view-btn">
+                                                                data-bs-target="#contactModal" class="view-btn btn-contact" data-id="{{$product->id}}">
                                                                 <i class="bi bi-telephone-outbound"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     data-bs-title="Liên hệ"></i>
@@ -323,7 +323,7 @@
                                                             class="d-flex justify-content-between align-items-center flex-column">
 
                                                             <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                                class="btn custom-demo-btn w-100 m-0 ">
+                                                                class="btn custom-demo-btn w-100 m-0 btn-contact" data-id="{{$product->id}}">
                                                                 <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                                             </a>
                                                         </div>
@@ -361,7 +361,7 @@
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
                                                     <div class="view">
-                                                        <a href="#!" class="view-btn"data-id="{{ $product->id }}">
+                                                        <a href="#!" class="view-btn quick-view"data-id="{{ $product->id }}">
                                                             <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                         </a>
@@ -373,7 +373,7 @@
                                                             </button>
                                                         @else
                                                             <a href="#!" data-bs-toggle="modal"
-                                                                data-bs-target="#contactModal" class="view-btn">
+                                                                data-bs-target="#contactModal" class="view-btn btn-contact" data-id="{{$product->id}}">
                                                                 <i class="bi bi-telephone-outbound"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     data-bs-title="Liên hệ"></i>
@@ -429,7 +429,7 @@
                                                             class="d-flex justify-content-between align-items-center flex-column">
 
                                                             <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                                class="btn custom-demo-btn w-100 m-0 ">
+                                                                class="btn custom-demo-btn w-100 m-0 btn-contact" data-id="{{$product->id}}">
                                                                 <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                                             </a>
                                                         </div>

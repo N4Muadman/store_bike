@@ -226,13 +226,13 @@
                         <li>
                             <p class="text-center mb-0 theme-text-accent-one d-inline">Liên Kết Phổ Biến</p>
                         </li>
-                        <li><a href="/xe-dap-dia-hinh">Xe Đạp Địa Hình</a></li>
-                        <li><a href="/xe-dap-duong-pho">Xe Đạp Đường Phố</a></li>
-                        <li><a href="/xe-dap-tre-em">Xe Đạp Trẻ Em</a></li>
-                        <li><a href="/xe-dap-dien">Xe Đạp Điện</a></li>
-                        <li><a href="/phu-kien-xe-dap">Phụ Kiện Xe Đạp</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/thuong-hieu-noi-tieng">Thương Hiệu Nổi Tiếng</a></li>
+                        <li><a href="{{route('product.index', ['category' => ['Xe Đạp Địa Hình']])}}">Xe Đạp Địa Hình</a></li>
+                        <li><a href="{{route('product.index', ['category' => ['Xe Đạp Đường Phố']])}}">Xe Đạp Đường Phố</a></li>
+                        <li><a href="{{route('product.index', ['category' => ['Xe Đạp Trẻ Em']])}}">Xe Đạp Trẻ Em</a></li>
+                        <li><a href="{{route('product.index', ['category' => ['Xe Đạp Điện']])}}">Xe Đạp Điện</a></li>
+                        <li><a href="{{route('product.index', ['category' => ['Phụ Kiện Xe Đạp']])}}">Phụ Kiện Xe Đạp</a></li>
+                        <li><a href="{{route('blogs')}}">Tin tức</a></li>
+                        {{-- <li><a href="/tin-tuc/thuong-hieu-noi-tieng">Thương Hiệu Nổi Tiếng</a></li> --}}
                     </ul>
                 </div>
             </div>
@@ -266,11 +266,10 @@
                     <div class="col-12">
                         <ul class="bottom-link d-flex flex-row flex-wrap justify-content-center align-items-center">
                             <li><a href="/">Trang Chủ</a></li>
-                            <li><a href="/cua-hang">Cửa Hàng</a></li>
-                            <li><a href="/blog">Blog</a></li>
-                            <li><a href="/ve-chung-toi">Về Chúng Tôi</a></li>
-                            <li><a href="/lien-he">Liên Hệ</a></li>
-                            <li><a href="/huong-dan-mua-hang">Hướng Dẫn Mua Hàng</a></li>
+                            <li><a href="{{route('product.index')}}">Sản phẩm</a></li>
+                            <li><a href="{{route('blogs')}}">Tin tức</a></li>
+                            <li><a href="{{route('contact')}}">Liên Hệ</a></li>
+                            {{-- <li><a href="/huong-dan-mua-hang">Hướng Dẫn Mua Hàng</a></li> --}}
                         </ul>
                     </div>
                     <div class="col-12">
@@ -324,7 +323,7 @@
                     <!-- btn -->
                     <div class="d-flex flex-column custom-button">
                         <p class="mb-2">Phí vận chuyển và mã giảm giá được tính khi thanh toán.</p>
-                        <a href="checkout.html"
+                        <a href="{{route('checkout')}}"
                             class="d-flex align-items-center custom-btn-primary button-effect w-100 text-uppercase">Thanh
                             toán</a>
                     </div>
@@ -360,31 +359,25 @@
                         <div class="row">
                             <!-- Form Liên Hệ -->
                             <div class="col-md-6">
-                                <form class="custom-contact-form">
+                                <form class="custom-contact-form" action="{{route('contacts.store')}}" method="POST">
+                                    @csrf
                                     <h4 class="mb-4 text-center" style="color: #e40202;">Gửi Thông Tin</h4>
+                                    <input type="hidden" name="product_id" value="" id="product_id_form_contact">
                                     <div class="mb-3">
                                         <input type="text" class="form-control" id="contact_name"
-                                            placeholder="Họ và tên" required>
+                                            placeholder="Họ và tên" required name="name">
                                     </div>
                                     <div class="mb-3">
                                         <input type="email" class="form-control" id="contact_email"
-                                            placeholder="Email" required>
+                                            placeholder="Email" required name="email">
                                     </div>
                                     <div class="mb-3">
                                         <input type="tel" class="form-control" id="contact_phone"
-                                            placeholder="Số điện thoại">
+                                            placeholder="Số điện thoại" name="phone">
                                     </div>
+                                    
                                     <div class="mb-3">
-                                        <select class="form-select" id="contact_subject">
-                                            <option selected disabled>Chọn chủ đề</option>
-                                            <option value="support">Hỗ trợ kỹ thuật</option>
-                                            <option value="sales">Tư vấn dịch vụ</option>
-                                            <option value="feedback">Góp ý</option>
-                                            <option value="other">Khác</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <textarea class="form-control" id="contact_message" rows="4" placeholder="Nội dung tin nhắn" required></textarea>
+                                        <textarea class="form-control" name="message" id="contact_message" rows="4" placeholder="Nội dung tin nhắn" required></textarea>
                                     </div>
                                     <button type="submit" class="btn custom-btn-submit w-100">GỬI THÔNG TIN</button>
                                 </form>
@@ -396,8 +389,8 @@
                                     <h4 class="text-center">Thông Tin Liên Hệ</h4>
                                     <p><i class="fas fa-map-marker-alt"></i> 123 Đường Nguyễn Văn Linh, Quận 7, TPHCM
                                     </p>
-                                    <p><i class="fas fa-phone-alt"></i> (028) 3123 4567</p>
-                                    <p><i class="fas fa-mobile-alt"></i> 090 123 4567</p>
+                                    
+                                    <p><i class="fas fa-mobile-alt"></i> 0976.717.688</p>
                                     <p><i class="fas fa-envelope"></i> info@website.com</p>
                                     <p><i class="fas fa-clock"></i> Thứ 2 - Thứ 6: 8:00 - 17:30</p>
 
@@ -416,6 +409,36 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="button-contact-vr" class="">
+        <div id="gom-all-in-one">
+            <div id="zalo-vr" class="button-contact">
+                <div class="phone-vr">
+                    <div class="phone-vr-circle-fill"></div>
+                    <div class="phone-vr-img-circle">
+                        <a target="_blank" href="https://zalo.me/0976717688">
+                            <img alt="Zalo" src="/assets/images/about/zalo.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="phone-vr" class="button-contact">
+                <div class="phone-vr">
+                    <div class="phone-vr-circle-fill"></div>
+                    <div class="phone-vr-img-circle">
+                        <a href="tel:0976717688">
+                            <img alt="Phone" src="/assets/images/about/phone.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="phone-bar phone-bar-n">
+                <a href="tel:0976717688">
+                    <span class="text-phone">0976.717.688</span>
+                </a>
             </div>
         </div>
     </div>
@@ -454,7 +477,6 @@
                 const data = await response.json();
                 const carts = data.carts;
                 document.getElementById('count-cart').innerText = carts.length;
-                // document.getElementById('count_cart_mobile').innerText = carts.length;
                 let listCart = '';
                 let total = 0;
 
@@ -501,61 +523,45 @@
                     let cartlistindex = '';
                     carts.forEach(function(cart, index) {
                         cartlistindex += `
-                            <tr class="product-box-contain">
-                                        <td class="product-detail">
-                                            <div class="product border-0">
-                                                <a href="product-left-thumbnail.html" class="product-image">
-                                                    <img src="${cart.image}"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-                                                <div class="product-detail">
-                                                    <ul>
-                                                        <li class="name">
-                                                            <a href="product-left-thumbnail.html">${cart.product_name}</a>
-                                                        </li>
-                                                    </ul>
+                                <div class="list-group-item p-3 mb-3 border-bottom">
+                                    <!-- row -->
+                                    <div class="row align-items-center">
+                                        <div class="col-6 col-md-2">
+                                            <img src="${cart.image}" alt="Parts"
+                                                class="img-fluid">
+                                        </div>
+                                        <div class="col-6 col-md-6 col-lg-5">
+                                            <a href="{{ route('product.detail', ':id') }}" class="text-reset">
+                                                <p class="mb-0 fw-bold">${cart.product_name}</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-between align-items-center pt-3 pb-3">
+                                            <div class="px-0 d-flex flex-column align-items-center justify-content-center">
+                                                <div class="input-group input-spinner d-inline-flex justify-content-center">
+                                                    <span class="button-minus btn btn-sm dec" data-index="${index}">-</span>
+                                                    <input type="text" value="${cart.quantity}"
+                                                        class="quantity-field form-control-sm form-input">
+                                                    <span class="button-plus btn btn-sm inc" data-index="${index}">+</span>
+                                                </div>
+                                                <div class="mt-2 small lh-1"> <a href="javascript:void(0)"
+                                                        class="text-decoration-none text-inherit delete-cart" data-index="${index}">
+                                                        <span class="me-1 align-middle"><i class="bi bi-trash"></i></span>
+                                                        <span class="text-muted font-extra-small">Remove</span></a>
                                                 </div>
                                             </div>
-                                        </td>
-
-                                        <td class="price">
-                                            <h4 class="table-title text-content">Giá</h4>
-                                            <h5>${ cart.sale_price > 0 ? new Intl.NumberFormat().format(cart.sale_price) :  new Intl.NumberFormat().format(cart.price) } đ
-                                                 <del class="text-content">${ cart.sale_price > 0 ? new Intl.NumberFormat().format(cart.price) + ' đ' :  '' } </del></h5>
-                                            <h6 class="theme-color">Tiết kiệm : ${new Intl.NumberFormat().format(cart.sale_price > 0 ? cart.price - cart.sale_price : 0)} đ</h6>
-                                        </td>
-
-                                        <td class="quantity">
-                                            <h4 class="table-title text-content">Số lượng</h4>
-                                            <div class="quantity-price">
-                                                <div class="cart_qty">
-                                                    <div class="input-group">
-                                                        <button type="button" class="btn qty-left-minus dec"
-                                                            data-type="minus" data-field="" data-index="${index}">
-                                                            <i class="fa fa-minus ms-0"></i>
-                                                        </button>
-                                                        <input class="form-control input-number qty-input" type="text"
-                                                            name="quantity" value="${cart.quantity}">
-                                                        <button type="button" class="btn qty-right-plus inc"
-                                                            data-type="plus" data-field="" data-index="${index}">
-                                                            <i class="fa fa-plus ms-0"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                            <div class="text-end">
+                                                <span class="fw-bold">${ cart.sale_price > 0 ? new Intl.NumberFormat().format(cart.sale_price) :  new Intl.NumberFormat().format(cart.price) } đ</span>
+                                                <div class="text-decoration-line-through text-muted">${ cart.sale_price > 0 ? new Intl.NumberFormat().format(cart.price) + ' đ' :  '' } </div>
+                                                <span class="fw-bold">Tiết kiệm : ${new Intl.NumberFormat().format(cart.sale_price > 0 ? cart.price - cart.sale_price : 0)} đ</span>
                                             </div>
-                                        </td>
-
-                                        <td class="subtotal">
-                                            <h4 class="table-title text-content">Tổng cộng</h4>
-                                            <h5>${new Intl.NumberFormat().format(cart.sale_price > 0 ? cart.sale_price * cart.quantity : cart.price * cart.quantity)} đ</h5>
-                                        </td>
-
-                                        <td class="save-remove">
-                                            <h4 class="table-title text-content">Hoạt Động</h4>
-                                            <a class="remove close_button delete-cart" data-index="${index}" href="javascript:void(0)">Xóa</a>
-                                        </td>
-                                    </tr>
-                        `;
+                                        </div>
+                                        
+                                        <div class="col-6 col-md-2 text-end">
+                                            <span class="fw-bold">${new Intl.NumberFormat().format(cart.sale_price > 0 ? cart.sale_price * cart.quantity : cart.price * cart.quantity)} đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `.replace(':id', cart.product_id);
                     });
                     document.getElementById('subtotal').innerText = carts.length > 0 ? new Intl.NumberFormat().format(
                         total) + ' đ' : '0đ';
@@ -779,7 +785,15 @@
             }
         }
 
-        document.querySelectorAll('.view-btn').forEach(function(element) {
+        function setProductIdFormContact() {
+            document.querySelectorAll('.btn-contact').forEach((element) => {
+                element.addEventListener('click', () =>  {
+                    document.getElementById('product_id_form_contact').value = element.dataset.id;
+                });
+            });
+        }
+
+        document.querySelectorAll('.quick-view').forEach(function(element) {
             element.addEventListener('click', function() {
                 productId = this.dataset.id;
 
@@ -797,6 +811,7 @@
                             document.getElementById('quickViewModal').innerHTML = html;
                             new bootstrap.Modal(document.getElementById('quickViewModal')).show();
                             addToCart();
+                            setProductIdFormContact();
                         })
                         .catch(error => {
                             console.error('There was a problem with the fetch operation:', error);
@@ -806,6 +821,7 @@
         });
         addToCart();
         getMyCart();
+        setProductIdFormContact();
     </script>
 
     @yield('scripts')

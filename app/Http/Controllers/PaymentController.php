@@ -49,7 +49,6 @@ class PaymentController extends Controller
                 return redirect($url_vnpay);
             }
 
-
             session()->forget('cart');
 
             return redirect()->route('product.index')->with('success', "Bạn đã mua hàng thành công");

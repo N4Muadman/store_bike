@@ -1,104 +1,117 @@
 @extends('layout')
 @section('title', 'Giỏ Hàng')
 @section('content')
-    <!-- Breadcrumb Section Start -->
-    <section class="breadcrumb-section pt-0">
-        <div class="container-fluid-lg">
+    <div class="my-4">
+        <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb-contain">
-                        <h2>Giỏ Hàng</h2>
-                        <nav>
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item">
-                                    <a href="index.html">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item active">Giỏ Hàng</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-
-    <!-- Cart Section Start -->
-    <section class="cart-section section-b-space">
-        <div class="container-fluid-lg">
-            <div class="row g-sm-5 g-3">
-                <div class="col-xxl-9">
-                    <div class="cart-table">
-                        <div class="table-responsive-xl">
-                            <table class="table">
-                                <tbody id="list-carts-index">
-                                    
-                                </tbody>
-                            </table>
+                <!-- shopping cart section -->
+                <div class="col-12 mb-6 mb-md-0">
+                    <div class="d-flex flex-column mb-4">
+                        <!-- title section -->
+                        <div class="d-flex justify-content-between p-3 border-bottom align-items-center">
+                            <span class="fs-4 fw-bold">Sản phẩm <span class="fs-6 theme-text-accent-one">(No.
+                                    Items)</span></span>
+                            <span class="fs-4 fw-bold mb-5"><a class="text">Giỏi Hàng</a></span>
+                            <span class="fs-4 fw-bold">Tổng cộng</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-xxl-3">
-                    <div class="summery-box p-sticky">
-                        <div class="summery-header">
-                            <h3>Tóm tắt giỏ hàng</h3>
-                        </div>
-
-                        <div class="summery-contain">
-                            <div class="coupon-cart">
-                                <h6 class="text-content mb-2">Áp dụng phiếu giảm giá</h6>
-                                <div class="mb-3 coupon-box input-group">
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="Nhập mã giảm giá ở đây">
-                                    <button class="btn-apply">Áp Dụng</button>
+                        <!-- manage address section -->
+                        <div class="d-flex flex-column justify-content-between p-3">
+                            <div class="mb-3" id="list-carts-index">
+                            </div>
+                            <div class="mt-4">
+                                <label class="form-label fw-bold mb-4">Bạn có Mã giảm giá không? Vui lòng cung cấp bên dưới.</label>
+                                <div class="row">
+                                    <div class="col-12 col-lg-5">
+                                        <div class="input-group search-input coupon-input">
+                                            <input type="text" class="form-control theme-border-radius"
+                                                placeholder="Mã giảm giá">
+                                            <button
+                                                class="d-flex justify-content-center align-items-center custom-btn-primary button-effect"
+                                                type="button">Áp dụng</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-7">
+                                        <div class="d-flex justify-content-end custom-button mt-3 mt-lg-0">
+                                            <a href="{{route('product.index')}}"
+                                                class="theme-border custom-btn-secondary button-effect px-5">Cập nhật giỏ hàng</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <ul>
-                                <li>
-                                    <h4>TỔNG PHỤ</h4>
-                                    <h4 class="price" id="subtotal">0 đ</h4>
-                                </li>
-
-                                <li>
-                                    <h4>Giảm Giá</h4>
-                                    <h4 class="price">(-) 0 đ</h4>
-                                </li>
-
-                                <li class="align-items-start">
-                                    <h4>Phí ship</h4>
-                                    <h4 class="price text-end">0 đ</h4>
-                                </li>
-                            </ul>
                         </div>
-
-                        <ul class="summery-total">
-                            <li class="list-total border-top-0">
-                                <h4>Total (USD)</h4>
-                                <h4 class="price theme-color" id="total">0 đ</h4>
-                            </li>
-                        </ul>
-
-                        <div class="button-group cart-button">
-                            <ul>
-                                <li>
-                                    <button onclick="location.href = '{{route('checkout')}}';"
-                                        class="btn btn-animation proceed-btn fw-bold">Tiến Hành Thanh Toán</button>
-                                </li>
-
-                                <li>
-                                    <button onclick="location.href = '{{ redirect()->back() }}"
-                                        class="btn btn-light shopping-button text-dark">
-                                        <i class="fa-solid fa-arrow-left-long"></i>Quay Lại Mua Sắm</button>
-                                </li>
-                            </ul>
+                    </div>
+                </div>
+                <!-- cart summary section -->
+                <div class="col-12 col-lg-6 offset-lg-6">
+                    <div class="d-flex flex-column mb-4">
+                        <!-- title section -->
+                        <div class="d-flex justify-content-between p-3 border-bottom">
+                            <span class="fs-4 fw-bold">Tóm tắt giỏ hàng</span>
+                        </div>
+                        <!-- price details -->
+                        <div class="p-3">
+                            <div class="pt-2">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-8">
+                                        <p class="mb-2">Tổng phụ</p>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="d-flex justify-content-end align-items-end">
+                                            <div class="product-price mb-2">
+                                                <i class="bi bi-currency-dollar"></i><span class="ms-1" id="subtotal"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- repetable -->
+                            <div class="pt-2">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-8">
+                                        <p class="mb-2">Phiếu giảm giá</p>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="d-flex justify-content-end align-items-end">
+                                            <div class="product-price mb-2">
+                                                <span class="ms-1">0 đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- repetable -->
+                            
+                            <!-- repetable -->
+                            <div class="pt-2">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-8">
+                                        <p class="mb-2 fw-bold">Tổng cộng</p>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="d-flex justify-content-end align-items-end">
+                                            <div class="product-price mb-2 fw-bold">
+                                                <i class="bi bi-currency-dollar"></i><span class="ms-1" id="total"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- repetable -->
+                            <div class="pt-2">
+                                <!-- button section -->
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <a href="{{route('checkout')}}"
+                                            class="btn custom-btn-primary fw-bold button-effect transition-3d-hover px-4">Thanh toán</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- repetable -->
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </section>
-    <!-- Cart Section End -->
+    </div>
 @endsection

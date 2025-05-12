@@ -204,7 +204,7 @@
                                             <img src="{{ $product->images->first()?->image_path }}"
                                                 class="img-fluid mx-auto d-block" alt="product picture">
                                             <div class="view">
-                                                <a href="#!" class="view-btn"data-id="{{ $product->id }}">
+                                                <a href="#!" class="view-btn quick-view"data-id="{{ $product->id }}">
                                                     <i class="bi bi-eye-fill" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Xem nhanh"></i>
                                                 </a>
@@ -216,7 +216,7 @@
                                                     </button>
                                                 @else
                                                     <a href="#!" data-bs-toggle="modal"
-                                                        data-bs-target="#contactModal" class="view-btn">
+                                                        data-bs-target="#contactModal" class="view-btn btn-contact" data-id="{{$product->id}}">
                                                         <i class="bi bi-telephone-outbound" data-bs-toggle="tooltip"
                                                             data-bs-placement="top" data-bs-title="Liên hệ"></i>
                                                     </a>
@@ -266,7 +266,7 @@
                                                 <div class="d-flex justify-content-end align-items-center">
 
                                                     <a data-bs-toggle="modal" data-bs-target="#contactModal"
-                                                        class="btn mb-0 transition-3d-hover" style="color: #e40202">
+                                                        class="btn mb-0 transition-3d-hover btn-contact" data-id="{{$product->id}}" style="color: #e40202">
                                                         <i class="bi bi-telephone-outbound me-2"></i>Liên hệ ngay
                                                     </a>
                                                 </div>
