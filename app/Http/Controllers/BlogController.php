@@ -19,32 +19,7 @@ class BlogController extends Controller
 
         $news = $newsQueyry->orderByDesc('created_at')->paginate(12);
 
-        $trendingProduct = Product::withCount([
-            'views as recent_views' => function ($query) {
-                $query->where('created_at', '>=', now()->subDays(3));
-            },
-            'reviews as review_count',
-        ])
-            ->withAvg('reviews as avg_rating', 'rating')
-            ->select('*')
-            ->get()
-            ->map(function ($product) {
-                $score =
-                    ($product->recent_views ?? 0) * 1 +
-                    $product->sold_quantity * 0.5 +
-                    ($product->avg_rating ?? 0) * 5 +
-                    ($product->review_count ?? 0) * 1;
-
-                $product->trending_score = $score;
-                return $product;
-            })
-            ->filter(function ($product) {
-                return $product->trending_score > 10;
-            })
-            ->sortByDesc('trending_score')
-            ->take(10);
-
-        return view('pages.blog.index', compact('news', 'trendingProduct'));
+        return view('pages.blog.index', compact('news'));
     }
     public function detail($slug){
         $blog = Blog::where('slug', $slug)->first();
@@ -57,32 +32,7 @@ class BlogController extends Controller
         ->orderBy('created_at' , 'desc')
         ->take(4)->get();
 
-        $trendingProduct = Product::withCount([
-            'views as recent_views' => function ($query) {
-                $query->where('created_at', '>=', now()->subDays(3));
-            },
-            'reviews as review_count',
-        ])
-            ->withAvg('reviews as avg_rating', 'rating')
-            ->select('*')
-            ->get()
-            ->map(function ($product) {
-                $score =
-                    ($product->recent_views ?? 0) * 1 +
-                    $product->sold_quantity * 0.5 +
-                    ($product->avg_rating ?? 0) * 5 +
-                    ($product->review_count ?? 0) * 1;
-
-                $product->trending_score = $score;
-                return $product;
-            })
-            ->filter(function ($product) {
-                return $product->trending_score > 10;
-            })
-            ->sortByDesc('trending_score')
-            ->take(10);
-
-        return view('pages.blog.detail', compact('blog', 'trendingProduct', 'recentBlogs'));
+        return view('pages.blog.detail', compact('blog', 'recentBlogs'));
     }
 
     public function postComment(Request $request){
