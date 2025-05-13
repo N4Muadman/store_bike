@@ -152,12 +152,10 @@
                                         Chia sẻ
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i
+                                        <li><a class="dropdown-item" target="__blank" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(route('product.detail', $product->id))}}"><i
                                                     class="bi bi-facebook me-2"></i>Facebook</a></li>
-                                        <li><a class="dropdown-item" href="#"><i
+                                        <li><a class="dropdown-item" target="__blank" href="https://twitter.com/intent/tweet?status={{urlencode($product->name  .' ' .route('product.detail', $product->id)) }}"><i
                                                     class="bi bi-twitter-x me-2"></i>Twitter</a></li>
-                                        <li><a class="dropdown-item" href="#"><i
-                                                    class="bi bi-instagram me-2"></i>Instagram</a></li>
                                     </ul>
                                 </div>
                             </div>
