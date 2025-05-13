@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="ThemesLay">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="50x50" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="50x50" href="/assets/images/favicon.png">
 
     <!-- main CSS -->
     <link href="/assets/css/main.css" rel="stylesheet">
