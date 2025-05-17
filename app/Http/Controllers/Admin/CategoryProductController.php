@@ -36,7 +36,7 @@ class CategoryProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required', 'icon' => 'required']);
+        $request->validate(['name' => 'required', 'icon' => 'nullable']);
 
         Category::create([
             'name' => $request->name,
@@ -76,7 +76,7 @@ class CategoryProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate(['name' => 'required', 'icon' => 'required']);
+        $request->validate(['name' => 'required', 'icon' => 'nullable']);
 
         $category = Category::find($id);
 
