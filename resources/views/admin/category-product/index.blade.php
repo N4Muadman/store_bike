@@ -43,7 +43,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên danh mục</th>
-                                    <th>Icon</th>
+                                    {{-- <th>Icon</th> --}}
                                     <th>Số lượng sản phẩm</th>
                                     <th>Chức năng</th>
                                 </tr>
@@ -53,10 +53,10 @@
                                     <tr class="parent-row">
                                         <td>{{ $it->id }}</td>
                                         <td>{{ $it->name }}</td>
-                                        <td>
+                                        {{-- <td>
                                             {!! $it->icon ? '<img src="'.$it->icon.'" style="width: 25px; height: 25px"
                                             class="blur-up lazyload" alt=""></td>' : 'Không có' !!} 
-                                        </td>
+                                        </td> --}}
                                         <td>{{ $it->products->count() }}</td>
                                         <td>
                                             <a href="#"class="avtar avtar-edit avtar-xs btn-link-secondary"
@@ -102,10 +102,7 @@
                             <input type="text" class="form-control" name="name" placeholder="Nhập tên danh mục" required>
                         </div>
 
-                        <div class="mb-3 icon">
-                            <label for="" class="form-lable">Link Icon</label>
-                            <input type="text" class="form-control" name="icon" placeholder="Nhập link Icon" required>
-                        </div>
+                        
 
                         <button type="submit" class="btn btn-info" >Thêm mới</button>
                     </form>
@@ -154,10 +151,6 @@
                                                                                                 <input type="text" class="form-control" name="name" placeholder="Nhập tên danh mục" value="${category.name}" required>
                                                                                             </div>
                                                                                             
-                                                                                            <div class="mb-3 icon">
-                                                                                                <label for="" class="form-lable">Link Icon</label>
-                                                                                                <input type="text" class="form-control" name="icon" value="${category.icon}" placeholder="Nhập link Icon">
-                                                                                            </div>
 
                                                                                             <button type="submit" class="btn btn-info" >Cập nhật</button>
                                                                                         </form>
