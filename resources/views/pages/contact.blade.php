@@ -45,25 +45,35 @@
                             <div class="controls">
                                 <div class="form-group mb-4">
                                     <input id="form_name" type="text" name="name" class="form-control custum-input"
-                                        placeholder="Tên của bạn" required="required" data-error="Name is required.">
-                                    <div class="help-block with-errors"></div>
+                                        placeholder="Tên của bạn" required="required"
+                                        data-error="Vui lòng nhập tên của bạn">
+                                    @error('name')
+                                        <p class="text-warning">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                                <div class="form-group mb-4">
-                                    <input id="form_email" type="email" name="email" class="form-control custum-input"
-                                        placeholder="Email của bạn" required="required"
-                                        data-error="Valid Email is required.">
-                                    <div class="help-block with-errors"></div>
-                                </div>
+
                                 <div class="form-group mb-4">
                                     <input id="form_phone" type="text" name="phone" class="form-control custum-input"
                                         placeholder="Số điện thoại" required="required"
-                                        data-error="Please specify your Phone.">
-                                    <div class="help-block with-errors"></div>
+                                        data-error="Vui lòng nhập số điện thoại của bạn">
+                                    @error('phone')
+                                        <p class="text-warning">{{ $message }}</p>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group mb-4">
-                                    <textarea id="form_message" name="message" class="form-control" placeholder="Nội dung" rows="3"
-                                        required="required" data-error="Please, leave us a message."></textarea>
-                                    <div class="help-block with-errors"></div>
+                                    <input id="form_email" type="email" name="email" class="form-control custum-input"
+                                        placeholder="Email của bạn">
+                                    @error('email')
+                                        <p class="text-warning">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <textarea id="form_message" name="message" class="form-control" placeholder="Nội dung" rows="3"></textarea>
+                                    @error('message')
+                                        <p class="text-warning">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="mb-1">
                                     <button type="Submit" value="Send message"

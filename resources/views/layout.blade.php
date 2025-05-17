@@ -5,12 +5,22 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="ThemesLay">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="50x50" href="/assets/images/favicon.png">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords"
+        content="xe đạp, xe đạp thể thao, xe đạp địa hình, mua xe đạp, cửa hàng xe đạp, xe đạp giá rẻ, xe đạp chất lượng">
+    <meta name="description"
+        content="Chuyên cung cấp các loại xe đạp thể thao, xe đạp địa hình, xe đạp đường phố chất lượng cao với giá tốt nhất. Giao hàng toàn quốc, bảo hành uy tín.">
+    <meta name="author" content="Xe Nhật - Chuyên Xe Đạp Nhật Bãi">
 
-    <!-- main CSS -->
+    <meta property="og:title" content="Cửa hàng xe đạp chất lượng - Giá tốt nhất thị trường">
+    <meta property="og:description"
+        content="Khám phá các mẫu xe đạp mới nhất, chính hãng, phù hợp với mọi nhu cầu thể thao và di chuyển hằng ngày.">
+    <meta property="og:image" content="http://xenhat.vn/assets/images/logo.png">
+    <meta property="og:url" content="http://xenhat.vn">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
     <link href="/assets/css/main.css" rel="stylesheet">
     <title>@yield('title')</title>
     @vite(['resource/css/app.css', 'resource/js/app.js'])
@@ -59,7 +69,7 @@
                 <nav
                     class="js-mega-menu navbar navbar-expand-md menu-navbar py-0 hs-menu-initialized hs-menu-horizontal">
                     <a class="navbar-brand p-0" href="{{ route('home') }}" aria-label="Front">
-                        <img src="/assets/images/logo.jpg" width="100px" style="border-radius: 50%" class="img-fluid"
+                        <img src="/assets/images/logo.png" width="100px" style="border-radius: 50%" class="img-fluid"
                             alt="Brand Logo" title="Brand Logo">
                     </a>
                     <!-- Responsive Toggle Button -->
@@ -167,9 +177,11 @@
                                 <div class="col-12 col-md-6">
                                     <h3 class="fs-2 fw-bold mb-4 mt-4 mt-lg-5">Thông Tin</h3>
                                     <ul class="footer-link">
-                                        
-                                        <li><i class="bi bi-chevron-double-right"></i><a href="{{route('contact')}}">Liên Hệ</a></li>
-                                        <li><i class="bi bi-chevron-double-right"></i><a href="{{route('blogs')}}">Tin tức</a></li>
+
+                                        <li><i class="bi bi-chevron-double-right"></i><a
+                                                href="{{ route('contact') }}">Liên Hệ</a></li>
+                                        <li><i class="bi bi-chevron-double-right"></i><a
+                                                href="{{ route('blogs') }}">Tin tức</a></li>
 
                                     </ul>
                                 </div>
@@ -208,7 +220,7 @@
             </div>
             <div class="row my-4 animate__animated wow animate__backInUp">
                 <div class="position-relative text-center">
-                    <img src="/assets/images/logo.jpg" style="border-radius: 50%" width="100px" class="img-fluid"
+                    <img src="/assets/images/logo.png" style="border-radius: 50%" width="100px" class="img-fluid"
                         alt="Logo Xe Nhật - Chuyên xe đạp nhật bãi">
                 </div>
                 <div class="d-flex flex-row flex-wrap justify-content-center align-items-center position-relative">
@@ -268,13 +280,14 @@
                         </ul>
                     </div>
                     <div class="col-12">
-                        <p class="mb-0 mt-3 font-small text-center">&copy; 2025 Bản quyền Xe Nhật - Chuyên xe đạp nhật
-                            bãi, Mọi
-                            quyền được bảo lưu. Với Yêu Thương <i class="bi bi-heart-fill"></i> bởi
-                            <a href="https://www.templatemonster.com/authors/themeslay/">Idai.vn</a>
+                        <p class="mb-0 mt-3 font-small text-center">
+                            @ Copyright © 2024,
+                            <a href="https://idai.vn/">Idai.vn</a>
+                            All Rights Reserved
                         </p>
                     </div>
                 </div>
+
             </div>
         </div>
     </footer>
@@ -364,20 +377,27 @@
                                     <div class="mb-3">
                                         <input type="text" class="form-control" id="contact_name"
                                             placeholder="Họ và tên" required name="name">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="email" class="form-control" id="contact_email"
-                                            placeholder="Email" required name="email">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="tel" class="form-control" id="contact_phone"
-                                            placeholder="Số điện thoại" name="phone">
+                                        @error('name')
+                                            <p class="text-warning">{{ $message }}</p>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-3">
-                                        <textarea class="form-control" name="message" id="contact_message" rows="4" placeholder="Nội dung tin nhắn"
-                                            required></textarea>
+                                        <input type="tel" class="form-control" id="contact_phone"
+                                            placeholder="Số điện thoại" required name="phone">
+                                        @error('phone')
+                                            <p class="text-warning">{{ $message }}</p>
+                                        @enderror
                                     </div>
+
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" id="contact_email"
+                                            placeholder="Email" name="email">
+                                        @error('email')
+                                            <p class="text-warning">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
                                     <button type="submit" class="btn custom-btn-submit w-100">GỬI THÔNG TIN</button>
                                 </form>
                             </div>
@@ -808,6 +828,48 @@
                         .then(html => {
                             document.getElementById('quickViewModal').innerHTML = html;
                             new bootstrap.Modal(document.getElementById('quickViewModal')).show();
+                            $('#quickViewModal').on('shown.bs.modal', function() {
+                                $('.slider-for').slick({
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    arrows: false,
+                                    fade: true,
+                                    asNavFor: '.slider-nav',
+                                });
+
+                                $('.slider-nav').slick({
+                                    slidesToShow: 3,
+                                    slidesToScroll: 1,
+                                    asNavFor: '.slider-for',
+                                    dots: false,
+                                    arrows: false,
+                                    centerMode: true,
+                                    focusOnSelect: true,
+                                });
+
+                                $('.slider-for').slick('setPosition');
+                                $('.slider-nav').slick('setPosition');
+
+                                $('.button-minus').click(function() {
+                                    var $input = $(this).parent().find('input');
+                                    var count = parseInt($input.val()) - 1;
+                                    count = count < 1 ? 1 : count;
+                                    $input.val(count);
+                                    $input.change();
+                                    console.log('000');
+
+                                    return false;
+                                });
+                                $('.button-plus').click(function() {
+                                    var $input = $(this).parent().find('input');
+                                    $input.val(parseInt($input.val()) + 1);
+                                    $input.change();
+                                    console.log('000');
+                                    return false;
+                                });
+                            });
+
+
                             addToCart();
                             setProductIdFormContact();
                         })

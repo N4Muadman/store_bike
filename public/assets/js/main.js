@@ -31,7 +31,8 @@ $(document).ready(function () {
     dots: true,
     arrows: true,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
     speed: 1000,
     fade: true,
     cssEase: 'linear',
@@ -79,9 +80,36 @@ $(document).ready(function () {
     dots: true,
     arrows: false,
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 3,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          // centerMode: true,
+        }
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          // centerMode: true,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          // centerMode: true,
+        }
+      }
+    ]
   });
 
   //testimonial slider
@@ -182,6 +210,7 @@ $(document).ready(function () {
     fade: true,
     asNavFor: '.slider-nav-left',
   });
+  
   $('.slider-nav-left').slick({
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -327,7 +356,7 @@ $('[data-type="section-switch"]').on('click', function () {
       target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
       $('html,body').animate({
         scrollTop: target.offset().top
-      }, 1000);
+      }, 0);
       return false;
     }
   }
@@ -452,10 +481,10 @@ $('.compare').on("click", function () {
 // });
 
 // modal open show product gallery
-$('.modal').on('shown.bs.modal', function (e) {
-  $('.slider-for').slick('setPosition');
-  $('.slider-nav').slick('setPosition');
-});
+// $('.modal').on('shown.bs.modal', function (e) {
+//   $('.slider-for').slick('setPosition');
+//   $('.slider-nav').slick('setPosition');
+// });
 
 // zoom product gallery
 function zoom(e) {

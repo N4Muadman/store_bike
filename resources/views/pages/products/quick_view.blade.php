@@ -12,7 +12,7 @@
                             @foreach ($product->images as $image)
                                 <div class="zoom" onmousemove="zoom(event)"
                                     style="background-image: url({{ $image->image_path }})">
-                                    <img src="{{ $image->image_path }}" alt="Hunting">
+                                    <img src="{{ $image->image_path }}" alt="Hunting" style="max-height: 400px">
                                 </div>
                             @endforeach
 
@@ -20,7 +20,7 @@
                         <div class="slider slider-nav gallery-thumb">
                             @foreach ($product->images as $image)
                                 <div>
-                                    <img src="{{ $image->image_path }}" alt="Hunting store">
+                                    <img src="{{ $image->image_path }}" alt="Hunting store" style="max-height: 125px">
                                 </div>
                             @endforeach
                         </div>
@@ -132,67 +132,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $('.slider-for').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.slider-nav',
-    });
-    $('.slider-nav').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        asNavFor: '.slider-for',
-        dots: false,
-        arrows: false,
-        centerMode: true,
-        focusOnSelect: true,
-    });
-
-    // product slider - Vertical Left Thumbnail
-    $('.slider-for-left').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        fade: true,
-        asNavFor: '.slider-nav-left',
-    });
-    $('.slider-nav-left').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        asNavFor: '.slider-for-left',
-        dots: false,
-        arrows: false,
-        centerMode: true,
-        focusOnSelect: true,
-        vertical: true,
-        responsive: [{
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                centerMode: true,
-                vertical: false,
-            }
-        }]
-    });
-    $('.button-minus').click(function() {
-        var $input = $(this).parent().find('input');
-        var count = parseInt($input.val()) - 1;
-        count = count < 1 ? 1 : count;
-        $input.val(count);
-        $input.change();
-        console.log('000');
-
-        return false;
-    });
-    $('.button-plus').click(function() {
-        var $input = $(this).parent().find('input');
-        $input.val(parseInt($input.val()) + 1);
-        $input.change();
-        console.log('000');
-        return false;
-    });
-</script>

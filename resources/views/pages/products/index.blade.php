@@ -118,8 +118,6 @@
                                                     @endfor
                                                 </span>
                                             @endforeach
-
-
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-3 mb-5">
@@ -202,8 +200,10 @@
                                     <input type="text" name="product_id" hidden value="{{ $product->id }}">
                                     <div class="card-wrap theme-border-radius border p-3">
                                         <div class="con-img-wrap m-auto product-quick-view">
-                                            <img src="{{ $product->images->first()?->image_path }}"
+                                            <a href="{{ route('product.detail', $product->id) }}">
+                                                <img src="{{ $product->images->first()?->image_path }}"
                                                 class="img-fluid mx-auto d-block" alt="product picture">
+                                            </a>
                                             <div class="view">
                                                 <a href="#!" class="view-btn quick-view"data-id="{{ $product->id }}">
                                                     <i class="bi bi-eye-fill" data-bs-toggle="tooltip"

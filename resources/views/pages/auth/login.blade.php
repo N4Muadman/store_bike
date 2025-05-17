@@ -81,7 +81,7 @@
     }
     .image-section {
       flex: 1;
-      background: url('/assets/images/logo.jpg') center center / cover no-repeat;
+      background: url('/assets/images/logo.png') center center / cover no-repeat;
       position: relative;
     }
     .close-btn {

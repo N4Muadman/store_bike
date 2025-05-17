@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1 class="visually-hidden">Xe Nhật - Chuyên Xe Đạp Nhật Bãi Uy Tín, Giá Tốt</h1>
+    <h1 class="visually-hidden">Xe Nhật - Chuyên Xe Đạp Nhật Bãi Uy Tín, Giá Tốt</h1>
     <section class="hero">
         <div class="carouselhero">
             <div class="slider-item set-bg" data-setbg="/assets/images/slider/banner.jpg">
@@ -127,8 +127,10 @@
                                             <input type="text" name="product_id" hidden value="{{ $product->id }}">
                                             <div class="card-wrap theme-border-radius px-4 py-4">
                                                 <div class="con-img-wrap m-auto product-quick-view">
-                                                    <img src="{{ $product->images->first()?->image_path }}"
-                                                        class="img-fluid mx-auto d-block" alt="product picture">
+                                                    <a href="{{ route('product.detail', $product->id) }}">
+                                                        <img src="{{ $product->images->first()?->image_path }}"
+                                                            class="img-fluid mx-auto d-block" alt="product picture">
+                                                    </a>
                                                     {{-- <div class="deal-badge">
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
@@ -238,8 +240,10 @@
                                             <input type="text" name="product_id" hidden value="{{ $product->id }}">
                                             <div class="card-wrap theme-border-radius px-4 py-4">
                                                 <div class="con-img-wrap m-auto product-quick-view">
-                                                    <img src="{{ $product->images->first()?->image_path }}"
-                                                        class="img-fluid mx-auto d-block" alt="product picture">
+                                                    <a href="{{ route('product.detail', $product->id) }}">
+                                                        <img src="{{ $product->images->first()?->image_path }}"
+                                                            class="img-fluid mx-auto d-block" alt="product picture">
+                                                    </a>
                                                     {{-- <div class="deal-badge">
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
@@ -332,7 +336,8 @@
                             <div class="row">
                                 <div class="col-12 text-center mt-4 animate__animated wow animate__backInUp">
                                     <div class="custom-button">
-                                        <a href="{{ route('product.index', ['sort' => 'purchases']) }}" class="fw-bold link-ef">
+                                        <a href="{{ route('product.index', ['sort' => 'purchases']) }}"
+                                            class="fw-bold link-ef">
                                             Xem thêm sản phẩm<i class="bi bi-arrow-right ps-2"></i></a>
                                     </div>
                                 </div>
@@ -348,8 +353,10 @@
                                             <input type="text" name="product_id" hidden value="{{ $product->id }}">
                                             <div class="card-wrap theme-border-radius px-4 py-4">
                                                 <div class="con-img-wrap m-auto product-quick-view">
-                                                    <img src="{{ $product->images->first()?->image_path }}"
-                                                        class="img-fluid mx-auto d-block" alt="product picture">
+                                                    <a href="{{ route('product.detail', $product->id) }}">
+                                                        <img src="{{ $product->images->first()?->image_path }}"
+                                                            class="img-fluid mx-auto d-block" alt="product picture">
+                                                    </a>
                                                     {{-- <div class="deal-badge">
                                                         <span class="badge bg-danger">15% Off</span>
                                                     </div> --}}
@@ -442,7 +449,8 @@
                             <div class="row">
                                 <div class="col-12 text-center mt-4 animate__animated wow animate__backInUp">
                                     <div class="custom-button">
-                                        <a href="{{ route('product.index', ['sort' => 'discount']) }}" class="fw-bold link-ef">
+                                        <a href="{{ route('product.index', ['sort' => 'discount']) }}"
+                                            class="fw-bold link-ef">
                                             Xem thêm sản phẩm<i class="bi bi-arrow-right ps-2"></i></a>
                                     </div>
                                 </div>
@@ -520,7 +528,7 @@
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <p class="mb-0 theme-text-accent-one">
-                                             0976.717.688
+                                            0976.717.688
                                         </p>
                                     </div>
                                 </div>
@@ -530,7 +538,7 @@
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <p class="mb-0 theme-text-accent-one">
-                                             ai@idai.com
+                                            ai@idai.com
                                         </p>
                                     </div>
                                 </div>
@@ -668,7 +676,7 @@
                 <div class="col-12">
                     <div class="carouselTestimonials mb-5">
                         <div class="row">
-                            <div class="col-12 col-lg-6 offset-lg-3">
+                            <div class="col-12">
                                 <div class="review-wrap">
                                     <div class="client-con mt-5 mt-lg-0">
                                         <div class="client-pic">
@@ -700,7 +708,7 @@
                         </div>
                         <!-- repeatable-->
                         <div class="row">
-                            <div class="col-12 col-lg-6 offset-lg-3">
+                            <div class="col-12">
                                 <div class="review-wrap">
                                     <div class="client-con mt-5 mt-lg-0">
                                         <div class="client-pic">
@@ -732,7 +740,7 @@
                         </div>
                         <!-- repeatable-->
                         <div class="row">
-                            <div class="col-12 col-lg-6 offset-lg-3">
+                            <div class="col-12">
                                 <div class="review-wrap">
                                     <div class="client-con mt-5 mt-lg-0">
                                         <div class="client-pic">
@@ -750,7 +758,7 @@
                                         </span>
                                         <div class="d-flex flex-column mt-2">
                                             <span class="fs-5 fw-bold mb-2">Minh Nhi</span>
-                                            {{-- <span class="theme-text-primary">Lineroad</span> --}}
+                                            <span class="theme-text-primary">Khách hàng</span>
                                         </div>
                                         <p class="fs-5 my-4 lh-lg con">
                                             Mua xe đạp ở đây rất thoải mái. Cửa hàng trưng bày đẹp mắt, dễ dàng xem và lựa
@@ -762,7 +770,7 @@
                         </div>
                         <!-- repeatable-->
                         <div class="row">
-                            <div class="col-12 col-lg-6 offset-lg-3">
+                            <div class="col-12">
                                 <div class="review-wrap">
                                     <div class="client-con mt-5 mt-lg-0">
                                         <div class="client-pic">
@@ -780,7 +788,7 @@
                                         </span>
                                         <div class="d-flex flex-column mt-2">
                                             <span class="fs-5 fw-bold mb-2">Hồng Nhung</span>
-                                            {{-- <span class="theme-text-primary">Blinkit IT</span> --}}
+                                            <span class="theme-text-primary">Khách hàng</span>
                                         </div>
                                         <p class="fs-5 my-4 lh-lg con">
                                             Mình tin tưởng lựa chọn cửa hàng này vì thấy rất chuyên nghiệp. Xe đạp đều là

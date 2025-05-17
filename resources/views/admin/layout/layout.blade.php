@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <!-- [Font] Family -->
     <link rel="stylesheet" href="{{ asset('adminAssets/fonts/inter/inter.css') }}" id="main-font-link">
 
