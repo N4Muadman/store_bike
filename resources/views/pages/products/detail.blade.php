@@ -46,11 +46,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="ps-lg-2 mt-6 mt-lg-0">
+                    <div class="ps-lg-2 mt-5 mt-lg-0">
                         <form class="form-add-to-cart" method="POST">
                             <input type="text" name="product_id" hidden value="{{ $product->id }}">
                             {{-- <a href="#!" class="mb-3 d-block mt-3 mt-lg-0">Outdoor Products</a> --}}
-                            <h1 class="mb-1 h1 fw-bold">{{ $product->name }}</h1>
+                            <h1 class="mb-1 text h1 fw-bold">{{ $product->name }}</h1>
                             <div class="mb-4">
                                 @php
                                     $rating =
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-0 mt-lg-3 row justify-content-start g-2 align-items-center">
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <!-- button -->
                                         <div class="custom-button">
                                             <button type="submit"
@@ -152,9 +152,11 @@
                                         Chia sẻ
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" target="__blank" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(route('product.detail', $product->id))}}"><i
+                                        <li><a class="dropdown-item" target="__blank"
+                                                href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product.detail', $product->id)) }}"><i
                                                     class="bi bi-facebook me-2"></i>Facebook</a></li>
-                                        <li><a class="dropdown-item" target="__blank" href="https://twitter.com/intent/tweet?status={{urlencode($product->name  .' ' .route('product.detail', $product->id)) }}"><i
+                                        <li><a class="dropdown-item" target="__blank"
+                                                href="https://twitter.com/intent/tweet?status={{ urlencode($product->name . ' ' . route('product.detail', $product->id)) }}"><i
                                                     class="bi bi-twitter-x me-2"></i>Twitter</a></li>
                                     </ul>
                                 </div>
@@ -199,7 +201,26 @@
                         <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
                             tabindex="0">
                             <h2 class="fs-3 mb-3">Chính sách vận chuyển</h2>
-                            <p class="mb-2">Please refer our Returns Policy.</p>
+                            <p class="mb-2"><strong>1. Phạm vi giao hàng:</strong> Chúng tôi giao hàng toàn quốc, áp dụng
+                                cho tất cả các tỉnh thành tại Việt Nam.</p>
+                            <p class="mb-2"><strong>2. Thời gian giao hàng:</strong>
+                                - Khu vực nội thành Hà Nội và TP.HCM: từ 1 - 2 ngày làm việc.<br>
+                                - Các tỉnh thành khác: từ 3 - 5 ngày làm việc tùy vị trí địa lý.
+                            </p>
+                            <p class="mb-2"><strong>3. Đơn vị vận chuyển:</strong> Chúng tôi hợp tác với các đối tác uy
+                                tín như Giao Hàng Nhanh, Viettel Post, J&T Express để đảm bảo giao hàng đúng hẹn và an toàn.
+                            </p>
+                            <p class="mb-2"><strong>4. Phí vận chuyển:</strong>
+                                - Miễn phí vận chuyển cho đơn hàng từ 2.000.000 VNĐ trở lên.<br>
+                                - Với đơn hàng dưới 2.000.000 VNĐ, phí vận chuyển được tính theo bảng giá của đối tác vận
+                                chuyển.
+                            </p>
+                            <p class="mb-2"><strong>5. Kiểm tra hàng:</strong> Quý khách có quyền kiểm tra sản phẩm trước
+                                khi thanh toán. Nếu phát hiện hàng hóa bị hư hỏng, móp méo hoặc sai mẫu mã, vui lòng từ chối
+                                nhận hàng và liên hệ với chúng tôi để được hỗ trợ.</p>
+                            <p class="mb-2"><strong>6. Giao hàng thất bại:</strong> Nếu không thể giao hàng do quý khách
+                                không có mặt hoặc cung cấp sai thông tin, chúng tôi sẽ liên hệ lại để sắp xếp giao lại trong
+                                thời gian sớm nhất.</p>
                         </div>
                     </div>
                 </div>

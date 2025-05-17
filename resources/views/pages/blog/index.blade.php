@@ -41,7 +41,7 @@
                                     <span>{{ $it->user?->name }}</span>
                                 </a>
                                 <a href="{{ route('blog.detail', $it->slug) }}"
-                                    class="fs-4 text-black d-block fw-bold my-3">{{ $it->title }}</a>
+                                    class="fs-4 text-black d-block fw-bold my-3 text">{{ $it->title }}</a>
                                 <div class="d-flex">
                                     <a href="{{ route('blog.detail', $it->slug) }}" class="font-small fw-bold link-more">Xem
                                         thêm<i class="bi bi-arrow-right ms-2"></i></a>

@@ -32,7 +32,7 @@
                                 <a href="#"><span class="cat fw-bold fs-6">{{ $category }}</span></a>
                             @endforeach
                         </div>
-                        <h1 class="fs-3 fw-bold my-3 text-center">{{ $blog->title }}</h1>
+                        <h1 class="fs-3 fw-bold my-3 text-center text">{{ $blog->title }}</h1>
                         <div class="mt-1 mb-5 d-flex align-items-center justify-content-center">
                             <span class="me-3">
                                 {{-- <img alt="avatar" src="/assets/images/avatar/01.png" class="img-fluid rounded-pill"

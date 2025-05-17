@@ -32,7 +32,7 @@
                         <input type="text" name="product_id" hidden value="{{ $product->id }}">
                         <div class="mt-5 mt-lg-0">
                             <a href="{{ route('product.detail', $product->id) }}"
-                                class="mb-2 d-block h4">{{ $product->name }}</a>
+                                class="mb-2 d-block h4 text">{{ $product->name }}</a>
                             <div class="">
                                 {!! $product->short_description !!}
                             </div>

@@ -984,6 +984,10 @@ div.zoom img:hover {
   margin-bottom: 0.5rem;
 }
 
+.text{
+  text-transform: capitalize;
+}
+
 .menu-banner .content .text {
   display: block;
   color: #ffffff;
