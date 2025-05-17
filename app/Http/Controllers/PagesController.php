@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\CustomerNeedAdvice;
@@ -18,6 +19,8 @@ class PagesController extends Controller
         $productQuery = Product::with('images');
 
         $categories = Category::OrderBy('name')->get();
+        
+        $banners = Banner::where('status', 1)->get();
 
         $products = (clone $productQuery)->inRandomOrder()->take(8)->get();
 
@@ -25,7 +28,7 @@ class PagesController extends Controller
 
         $bestSellingProducts = (clone $productQuery)->OrderBy('total_purchases')->take(8)->get();
 
-        return view('pages.home', compact('categories','products' ,'saleProducts', 'bestSellingProducts'));
+        return view('pages.home', compact('categories','products', 'banners' ,'saleProducts', 'bestSellingProducts'));
     }
 
     public function news()

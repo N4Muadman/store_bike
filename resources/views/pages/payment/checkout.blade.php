@@ -39,41 +39,97 @@
                                 <div class="pt-4">
                                     <div class="row g-3">
                                         <div class="col-12 col-lg-6">
-                                            <input type="text" class="form-control min-h" placeholder="Họ và tên"
-                                                aria-label="name" required="" name="full_name" value="{{old('full_name')}}">
+                                            <input type="text"
+                                                class="form-control min-h @error('full_name')
+                                                border-danger
+                                            @enderror"
+                                                placeholder="Họ và tên" aria-label="name" required="" name="full_name"
+                                                value="{{ old('full_name') }}">
+                                            @error('full_name')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
                                         <div class="col-12 col-lg-6">
-                                            <input type="text" class="form-control min-h" placeholder="Số điện thoại"
-                                                aria-label="mobile" required="" name="phone_number" value="{{old('phone_number')}}">
+                                            <input type="text"
+                                                class="form-control min-h
+                                            @error('phone_number')
+                                                border-danger
+                                            @enderror"
+                                                placeholder="Số điện thoại" aria-label="mobile" required=""
+                                                name="phone_number" value="{{ old('phone_number') }}">
+                                            @error('phone_number')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
                                         <div class="col-12 col-lg-12">
-                                            <input type="email" class="form-control min-h" name="email" placeholder="Email"  value="{{old('Email')}}">
+                                            <input type="email"
+                                                class="form-control min-h @error('email')
+                                                border-danger
+                                            @enderror"
+                                                name="email" placeholder="Email" value="{{ old('Email') }}">
+                                            @error('email')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
 
                                         <div class="col-12 col-lg-12">
-                                            <select class="form-select min-h" name="province" id="provinces" required>
+                                            <select
+                                                class="form-select min-h @error('province')
+                                                border-danger
+                                            @enderror"
+                                                name="province" id="provinces" required>
                                                 <option value="" data-id="">Chọn tỉnh / thành phố
                                                 </option>
                                             </select>
+                                            @error('province')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
 
                                         <div class="col-12 col-lg-12">
-                                            <select class="form-select min-h" name="district" id="districts" required>
+                                            <select
+                                                class="form-select min-h @error('district')
+                                                border-danger
+                                            @enderror"
+                                                name="district" id="districts" required>
                                                 <option value="" data-id="">Chọn quận / huyện
                                                 </option>
                                             </select>
+                                            @error('district')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
 
                                         <div class="col-12 col-lg-12">
-                                            <select class="form-select min-h" name="ward" id="wards" required>
+                                            <select
+                                                class="form-select min-h @error('wards')
+                                                border-danger
+                                            @enderror"
+                                                name="ward" id="wards" required>
                                                 <option value="" data-id="">Chọn phường / xã
                                                 </option>
                                             </select>
+                                            @error('wards')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
 
                                         <div class="col-12 col-lg-12">
-                                            <textarea class="form-control" id="exampleFormControlTextarea2" name="address" rows="3"
-                                                placeholder="Địa chỉ chi tiết"> {{old('address')}}</textarea>
+                                            <textarea
+                                                class="form-control @error('address')
+                                                border-danger
+                                            @enderror"
+                                                id="exampleFormControlTextarea2" name="address" rows="3" placeholder="Địa chỉ chi tiết"> {{ old('address') }}</textarea>
+                                            @error('address')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
 
                                     </div>
@@ -196,15 +252,19 @@
                             <div class="col my-4">
                                 <div class="form-pay">
                                     <div class="pay-radio">
-                                        <label for="visa"><img src="assets/images/icons/payment-visa.png"
-                                                alt="payment">Thanh toán khi nhận hàng</label>
+                                        <label for="visa">
+                                            {{-- <img src="assets/images/icons/payment-visa.png"
+                                                alt="payment"> --}}
+                                            Thanh toán khi nhận hàng</label>
                                         <input checked="" id="visa" value="cash" name="payment_method"
                                             type="radio">
                                     </div>
 
                                     <div class="pay-radio">
-                                        <label for="paypal"><img src="assets/images/icons/payment-pay.png"
-                                                alt="payment">VnPay</label>
+                                        <label for="paypal">
+                                            <img src="assets/images/icons/payment-vnpay.webp" width="24px"
+                                                alt="payment">
+                                            VnPay</label>
                                         <input id="paypal" value="vnpay" name="payment_method" type="radio">
                                     </div>
 
@@ -227,7 +287,7 @@
             </form>
         </div>
     </div>
-    
+
     <script>
         async function getProvinces() {
             try {

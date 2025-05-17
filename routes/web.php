@@ -1,15 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CategoryProductController;
-use App\Http\Controllers\Admin\CustomerNeedAdviceController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\EmbedYoutubeVideosController;
 use App\Http\Controllers\Admin\RivewProductController;
-use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
@@ -18,7 +16,6 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\vnpay\PaymentByVnpay;
 use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Expr\FuncCall;
 
 Route::get('/', [PagesController::class, 'home'])->name('home');
 
@@ -75,6 +72,8 @@ Route::middleware('is_admin')->prefix('admin')->group(function () {
 
     Route::resource('quan-ly-bai-viet', PostController::class)->names('admin.posts');
     Route::resource('danh-muc-san-pham', CategoryProductController::class)->names('admin.category.product');
+     
+    Route::resource('quan-ly-banner', BannerController::class)->names('admin.banner');
 
     Route::get('danh-gia-san-pham', [RivewProductController::class, 'index'])->name('review.index');
     Route::post('update-review/{id}', [RivewProductController::class, 'update'])->name('review.update');

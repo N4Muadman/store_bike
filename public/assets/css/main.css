@@ -2909,9 +2909,9 @@ div.zoom img:hover {
 }
 
 @media screen and (max-width: 992px) {
-  /* .navbar-brand img {
-    width: 60%;
-  } */
+  .navbar-brand img {
+    width: 70px;
+  }
 }
 
 .header {
@@ -3152,7 +3152,7 @@ div.zoom img:hover {
   transition: all 0.4s;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50%;
+  background-position: 100%;
   z-index: 1;
 }
 

@@ -5,26 +5,38 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- SEO Meta Tags -->
     <meta name="robots" content="index, follow">
     <meta name="keywords"
-        content="xe đạp, xe đạp thể thao, xe đạp địa hình, mua xe đạp, cửa hàng xe đạp, xe đạp giá rẻ, xe đạp chất lượng">
+        content="xe đạp Nhật bãi, xe đạp Nhật, xe đạp cũ nhập khẩu, xe đạp thể thao, xe đạp địa hình, cửa hàng xe đạp, mua xe đạp giá rẻ, xe đạp Nhật chất lượng">
     <meta name="description"
-        content="Chuyên cung cấp các loại xe đạp thể thao, xe đạp địa hình, xe đạp đường phố chất lượng cao với giá tốt nhất. Giao hàng toàn quốc, bảo hành uy tín.">
+        content="Xe Nhật - Cửa hàng chuyên xe đạp Nhật bãi chất lượng cao, bền bỉ, giá tốt. Giao hàng toàn quốc, bảo hành uy tín, mẫu mã đa dạng phù hợp cho mọi nhu cầu.">
     <meta name="author" content="Xe Nhật - Chuyên Xe Đạp Nhật Bãi">
 
-    <meta property="og:title" content="Cửa hàng xe đạp chất lượng - Giá tốt nhất thị trường">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Xe Nhật - Chuyên xe đạp Nhật bãi chất lượng cao, giá tốt">
     <meta property="og:description"
-        content="Khám phá các mẫu xe đạp mới nhất, chính hãng, phù hợp với mọi nhu cầu thể thao và di chuyển hằng ngày.">
+        content="Khám phá các mẫu xe đạp Nhật bãi nguyên zin, bền đẹp, phù hợp cho thể thao và đi lại hằng ngày. Giao hàng nhanh chóng, bảo hành rõ ràng.">
     <meta property="og:image" content="http://xenhat.vn/assets/images/logo.png">
     <meta property="og:url" content="http://xenhat.vn">
     <meta property="og:type" content="website">
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Xe Nhật - Chuyên xe đạp Nhật bãi chất lượng cao, giá tốt">
+    <meta name="twitter:description"
+        content="Xe đạp Nhật bãi chính hãng, đa dạng mẫu mã, giá rẻ, bảo hành uy tín. Giao hàng toàn quốc.">
+    <meta name="twitter:image" content="http://xenhat.vn/assets/images/logo.png">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
+    <!-- Styles & Scripts -->
     <link href="/assets/css/main.css" rel="stylesheet">
     <title>@yield('title')</title>
     @vite(['resource/css/app.css', 'resource/js/app.js'])
-
+    
 </head>
 
 
@@ -67,23 +79,12 @@
             <div class="container">
                 <!-- mega menu -navigation -->
                 <nav
-                    class="js-mega-menu navbar navbar-expand-md menu-navbar py-0 hs-menu-initialized hs-menu-horizontal">
+                    class="js-mega-menu navbar algin-items-center navbar-expand-md menu-navbar py-0 hs-menu-initialized hs-menu-horizontal">
                     <a class="navbar-brand p-0" href="{{ route('home') }}" aria-label="Front">
                         <img src="/assets/images/logo.png" width="100px" style="border-radius: 50%" class="img-fluid"
                             alt="Brand Logo" title="Brand Logo">
                     </a>
-                    <!-- Responsive Toggle Button -->
-                    <button type="button" class="navbar-toggler btn u-hamburger" aria-label="Toggle navigation"
-                        aria-expanded="false" aria-controls="navBar" data-bs-toggle="collapse" data-bs-target="#navBar">
-                        <span id="hamburgerTrigger" class="box">
-                            <span class="inner"></span>
-                        </span>
-                    </button>
-                    <!-- End Responsive Toggle Button -->
-
-                    <!-- top action button -->
-                    <div class="d-flex top ms-auto me-auto mt-4 mt-sm-0 position-relative order-lg-3">
-
+                    <div class="d-flex top ms-auto me-auto mt-2 mt-sm-0 position-relative order-lg-3">
                         <form action="{{ route('product.index') }}" method="get">
                             @foreach (request()->except('search') as $key => $value)
                                 @if (is_array($value))
@@ -105,7 +106,7 @@
                             </div>
                         </form>
 
-                        <div class="cart-btn ms-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                        <div class="cart-btn ms-3 d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                             aria-controls="offcanvasRight">
                             <div class="notify-btn">
                                 <i class="bi bi-bag" title="Giỏ hàng"></i>
@@ -113,6 +114,17 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Responsive Toggle Button -->
+                    <button type="button" class="navbar-toggler btn u-hamburger" aria-label="Toggle navigation"
+                        aria-expanded="false" aria-controls="navBar" data-bs-toggle="collapse" data-bs-target="#navBar">
+                        <span id="hamburgerTrigger" class="box">
+                            <span class="inner"></span>
+                        </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
+
+                    <!-- top action button -->
+
 
                     <!-- Navigation -->
                     <div id="navBar" class="collapse navbar-collapse menu-navbar-collapse justify-content-center">

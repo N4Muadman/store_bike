@@ -127,6 +127,12 @@
                             <span class="pc-mtext">Quản lý bài viết</span>
                         </a>
                     </li>
+
+                    <li class="pc-item pc-hasmenu">
+                        <a href="{{ route('admin.banner.index') }}" class="pc-link">
+                            <span class="pc-mtext">Quản lý banner</span>
+                        </a>
+                    </li>
                     
                     <li class="pc-item pc-hasmenu">
                         <a href="{{ route('admin.contacts.index') }}" class="pc-link">

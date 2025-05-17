@@ -370,16 +370,16 @@
                     <div class="mb-5">
                         <div class="d-flex justify-content-between align-items-center mb-5">
                             <div>
-                                <p class="mb-0 fs-4 fw-bold theme-text-primary">Reviews</p>
+                                <p class="mb-0 fs-4 fw-bold theme-text-primary">Đánh giá</p>
                             </div>
-                            <div>
+                            {{-- <div>
                                 <select class="border theme-border-radius px-2" aria-label="Default select example">
                                     <option selected="">Top Review</option>
                                     <option value="1">Most Recent</option>
                                     <option value="2">Highest Rating</option>
                                     <option value="3">Lowest Rating</option>
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
                         @forelse ($product->reviews as $review)
                             <div class="d-flex border-bottom pb-3 mb-3">

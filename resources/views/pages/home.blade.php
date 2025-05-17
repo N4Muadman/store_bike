@@ -7,30 +7,10 @@
     <h1 class="visually-hidden">Xe Nhật - Chuyên Xe Đạp Nhật Bãi Uy Tín, Giá Tốt</h1>
     <section class="hero">
         <div class="carouselhero">
-            <div class="slider-item set-bg" data-setbg="/assets/images/slider/banner.jpg">
-                {{-- <div class="container">
-                <div class="row">
-                    <div class="col-12 text-start position-relative">
-                        <h1 class="display-4 fw-bold text-uppercase mb-4 theme-text-primary animate__animated"
-                            data-animation-in="animate__fadeInUp" data-delay-in=".1s">All Range of <br> Cycle
-                            Mechine</h1>
-                        <p class="fs-5 mb-0 animate__animated" data-animation-in="animate__fadeInUp"
-                            data-delay-in=".2s">All
-                            Related Products Available</p>
-                        <div class="group justify-content-start mt-5 custom-button animate__animated"
-                            data-animation-in="animate__fadeInUp" data-delay-in=".3s">
-                            <button
-                                class="btn custom-btn-primary font-small fw-bold button-effect transition-3d-hover px-4"
-                                type="submit">Shop Product</button>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            </div>
-            <!-- repetable item -->
-            <div class="slider-item set-bg" data-setbg="/assets/images/slider/slider05.jpg">
-            </div>
-            <!-- repetable item -->
+            @foreach ($banners as $banner)
+              <div class="slider-item set-bg" data-setbg="{{$banner->image_path}}">
+            </div>  
+            @endforeach
         </div>
     </section>
 
@@ -477,7 +457,9 @@
                         <h2 class="fs-1 fw-bold theme-text-primary mb-3 animate__animated wow animate__backInUp">
                             Cửa hàng của chúng tôi</h2>
                         <p class="mb-5 theme-text-accent-one max animate__animated wow animate__backInUp">
-                            Cửa hàng chuyên về xe đạp Giant Liv Rove 4 Disc chính hãng.
+                            Chúng tôi chuyên cung cấp các dòng xe đạp Nhật bãi chất lượng cao, nhập khẩu nguyên zin, bền bỉ
+                            và tiết kiệm. Tại đây, bạn sẽ tìm thấy nhiều mẫu mã đa dạng, phù hợp cho cả nhu cầu thể thao, đi
+                            học, đi làm và dạo phố. Dịch vụ tận tâm, bảo hành rõ ràng và hỗ trợ giao hàng toàn quốc.
                         </p>
                         <ul>
                             <li class="mb-5 animate__animated wow animate__backInUp">
@@ -654,7 +636,7 @@
                         </div>
                         <div class="text">
                             <h3 class="icon-box-title">Miễn phí vận chuyển</h3>
-                            <p>Miễn phí vận chuyển cho đơn hàng từ [giá trị đơn hàng] hoặc trong khu vực [khu vực]</p>
+                            <p>Miễn phí vận chuyển cho tất cả đơn hàng từ trên toàn quốc</p>
                         </div>
                     </div>
                 </div>
