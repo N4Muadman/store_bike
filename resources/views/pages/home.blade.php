@@ -15,7 +15,7 @@
     </section>
 
     <!-- Our Product banner section -->
-    <section class="product-banner pt-5">
+    {{-- <section class="product-banner pt-5">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6 mb-3 mb-md-0 animate__animated wow animate__backInUp">
@@ -58,7 +58,7 @@
                 <!-- repetable -->
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- top categories section -->
     <section class="topCategories py-5">
         <div class="container">
